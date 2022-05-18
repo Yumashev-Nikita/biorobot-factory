@@ -11,5 +11,5 @@ export default {
 
 <style lang="sass">
   .container
-    width: 100%;
+    width: 100%
 </style>
