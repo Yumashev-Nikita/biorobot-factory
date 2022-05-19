@@ -3,7 +3,7 @@
     <div class="main-container">
       <div class="top-bar">
         <div class="logo"></div>
-        <GenericButton/>
+        <GenericButton text='Произвести биоробота' width='236px'/>
       </div>
 
       <div class="robots"></div>
@@ -84,7 +84,7 @@ import CryptoWallet from './components/CryptoWallet.vue';
 import PartMarket from './components/PartMarket.vue';
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     GenericButton,
     CryptoWallet,
@@ -94,11 +94,6 @@ export default {
     return {
       coins: 0,
       h_level: 1,
-      biobots: [
-        {
-          id: 0, hand: true, microchip: true, soul: true, gender: 'male', type: 'frontend',
-        },
-      ],
     };
   },
 };
@@ -110,7 +105,7 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    background: radial-gradient(82.33% 70.44% at 50% 0%, #26394D 0%, #212529 100%), #FFFFFF;
+    background: radial-gradient(82.33% 80.44% at 50% 0%, #26394D 0%, #212529 100%), #FFFFFF;
   }
   .top-bar {
     display: flex;

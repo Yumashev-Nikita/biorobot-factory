@@ -1,28 +1,42 @@
 <template>
   <div class="coins">
-    <div class="coins__coin" v-for="coin in balance" :key="coin"></div>
+    <div class="coins__coin" v-for="coin in coins" :key="coin"></div>
   </div>
-  <div class="balance balance_text">{{ balance }} biorobo {{ text_cased }}</div>
-  <div class="make-money-button make-money-button_text">Нацыганить</div>
-  <div class="condition-checkbox"></div>
-  <div class="condition condition_text">Цыганить по 5 монет</div>
+  <div class="balance balance_text">{{ coins }} biorobo {{ text_cased }}</div>
+  <div class="make-money-button make-money-button_text" @keyup.enter="submit" @click="farmCoins">
+    Нацыганить
+  </div>
+  <div class="condition-checkbox" @keyup.enter="submit" @click="switchStackMode"></div>
+  <div class="condition condition_text">Цыганить по 5 монет
+  </div>
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
   name: 'CryptoWallet',
   data() {
     return {
-      balance: 45,
       text_cased: 'монет',
     };
   },
+  setup() {
+    console.log('setup');
+    const store = useStore();
+    return {
+      coins: computed(() => store.state.coins),
+      farmCoins: () => store.commit('farmCoins'),
+      switchStackMode: () => store.commit('switchStackMode'),
+    };
+  },
   mounted() {
-    if (this.balance >= 11 && this.balance <= 19) {
+    if (this.coins >= 11 && this.coins <= 19) {
       this.text_cased = 'монет';
-    } else if (this.balance % 10 >= 2 && this.balance % 10 <= 4) {
+    } else if (this.coins % 10 >= 2 && this.coins % 10 <= 4) {
       this.text_cased = 'монеты';
-    } else if (this.balance % 10 === 1) {
+    } else if (this.coins % 10 === 1) {
       this.text_cased = 'монета';
     }
   },
@@ -32,11 +46,11 @@ export default {
 <style lang="scss" scoped>
   .coins {
     display: flex;
-    width: 100%;
+    flex-direction: row-reverse;
     &__coin {
       width: 20px;
       height: 20px;
-      margin-right: -12.6px;
+      margin-right: -12px;
       background: url('../assets/coin.svg');
       background-repeat: no-repeat;
     }

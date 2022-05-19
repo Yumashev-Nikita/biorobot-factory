@@ -1,0 +1,13 @@
+{
+  "parts": [
+    {
+     "name": "biohand", "amount": 2
+    },
+    {
+     "name": "microchip", "amount": 2
+    },
+    {
+     "name": "soul", "amount": 2
+    }
+  ]
+}
