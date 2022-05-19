@@ -6,11 +6,12 @@
         <GenericButton/>
       </div>
 
+      <div class="robots"></div>
+
       <div class="section">
         <div class="section__top-part">
           <div class="section__number number" style="margin-top: 28px">01</div>
-          <div class="section__title main-title">Фабрика по производству биороботов</div>
-          <div class="robots"></div>
+          <div class="section__main-title main-title">Фабрика по производству биороботов</div>
         </div>
         <div class="section__main-part">
           <div class="section__scroll">
@@ -80,12 +81,14 @@
 <script>
 import GenericButton from './components/GenericButton.vue';
 import CryptoWallet from './components/CryptoWallet.vue';
+import PartMarket from './components/PartMarket.vue';
 
 export default {
   name: 'App',
   components: {
     GenericButton,
     CryptoWallet,
+    PartMarket,
   },
   data() {
     return {
@@ -102,6 +105,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .app-container {
+    z-index: 0;
     position: absolute;
     top: 0;
     left: 0;
@@ -141,6 +145,10 @@ export default {
       text-align: center;
       margin-top: 8px;
     }
+    &__main-title {
+      margin-left: 106px;
+      width: 470px;
+    }
     &__title {
       margin-left: 106px;
     }
@@ -165,7 +173,6 @@ export default {
     font-size: 56px;
     line-height: 72px;
     color: #FFFFFF;
-    width: 470px;
   }
   .undertitle {
     font-family: 'Montserrat';
@@ -216,7 +223,6 @@ export default {
   }
   .robots {
     width: 366px;
-    height: 320px;
     margin-left: 662px;
     background-repeat: no-repeat;
   }
