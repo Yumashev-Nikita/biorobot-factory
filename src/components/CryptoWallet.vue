@@ -32,12 +32,11 @@ export default {
 <style lang="scss" scoped>
   .coins {
     display: flex;
-    margin-left: 247px;
     width: 100%;
     &__coin {
       width: 20px;
       height: 20px;
-      margin-right: -25.6px;
+      margin-right: -12.6px;
       background: url('../assets/coin.svg');
       background-repeat: no-repeat;
     }
