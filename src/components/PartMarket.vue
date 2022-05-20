@@ -70,6 +70,8 @@ export default {
       margin-bottom: 24px;
     }
     &__button-wrapper {
+      display: flex;
+      justify-content: center;
       margin-bottom: 20px;
     }
   }

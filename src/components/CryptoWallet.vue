@@ -2,13 +2,13 @@
   <div class="coins">
     <div class="coins__coin" v-for="coin in coins" :key="coin"></div>
   </div>
-  <div class="balance balance_text">{{ coins }} biorobo {{ text_cased }}</div>
-  <div class="make-money-button make-money-button_text" @keyup.enter="submit" @click="farmCoins">
+  <div class="balance balance_text">{{ coins }} biorobo {{ textCased }}</div>
+  <div class="make-money-button make-money-button_text disable-select"
+                  @keyup.enter="submit" @click="farmCoins">
     Нацыганить
   </div>
   <div class="condition-checkbox" @keyup.enter="submit" @click="switchStackMode"></div>
-  <div class="condition condition_text">Цыганить по 5 монет
-  </div>
+  <div class="condition condition_text">Цыганить по 5 монет</div>
 </template>
 
 <script>
@@ -17,28 +17,14 @@ import { useStore } from 'vuex';
 
 export default {
   name: 'CryptoWallet',
-  data() {
-    return {
-      text_cased: 'монет',
-    };
-  },
   setup() {
-    console.log('setup');
     const store = useStore();
     return {
-      coins: computed(() => store.state.coins),
-      farmCoins: () => store.commit('farmCoins'),
+      coins: computed(() => store.state.cW.coins),
+      textCased: computed(() => store.state.cW.balanceTextCased),
+      farmCoins: () => store.dispatch('farmAndCase'),
       switchStackMode: () => store.commit('switchStackMode'),
     };
-  },
-  mounted() {
-    if (this.coins >= 11 && this.coins <= 19) {
-      this.text_cased = 'монет';
-    } else if (this.coins % 10 >= 2 && this.coins % 10 <= 4) {
-      this.text_cased = 'монеты';
-    } else if (this.coins % 10 === 1) {
-      this.text_cased = 'монета';
-    }
   },
 };
 </script>
@@ -80,7 +66,8 @@ export default {
     line-height: 24px;
     color: #FF7F22;
     text-decoration: 1px underline #ff7e229d;
-    text-underline-position: under
+    text-underline-position: under;
+    cursor: pointer;
   }
   .condition-checkbox {
     display: inline-block;
@@ -102,5 +89,10 @@ export default {
     font-size: 16px;
     line-height: 24px;
     color: #FFFFFF;
+  }
+  .disable-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
 </style>
