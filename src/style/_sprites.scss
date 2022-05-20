@@ -1,0 +1,58 @@
+/* App */
+
+.logo {
+  width: 78px;
+  height: 48px;
+  float: left;
+  background: url('@/assets/pacman-logo.svg');
+}
+.scroll-arrow {
+  width: 24px;
+  height: 24px;
+  margin-top: 13px;
+  margin-left: 6px;
+  background: url('@/assets/scroll-arrow.svg');
+  background-repeat: no-repeat;
+}
+.robots {
+  width: 366px;
+  margin-left: 662px;
+  background-repeat: no-repeat;
+}
+
+/* CryptoWallet */
+
+.coin {
+  width: 20px;
+  height: 20px;
+  background: url('@/assets/coin.svg');
+  background-repeat: no-repeat;
+}
+
+.checkmark {
+  width: 14px;
+  height: 12px;
+  background: url('@/assets/checkmark.svg');
+  background-repeat: no-repeat;
+}
+
+/* PartMarket */
+
+.biohand {
+  width: 101px;
+  height: 67px;
+  background: url('@/assets/biohand.svg');
+  background-repeat: no-repeat;
+}
+.microchip {
+  width: 80px;
+  height: 80px;
+  background: url('@/assets/microchip.svg');
+  background-repeat: no-repeat;
+}
+.soul {
+  width: 55.88px;
+  height: 54px;
+  background: url('@/assets/soul.svg');
+  background-repeat: no-repeat;
+}

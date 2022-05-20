@@ -99,6 +99,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@use './style/textstyles';
+@use './style/sprites';
   .app-container {
     z-index: 0;
     position: absolute;
@@ -112,12 +114,6 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 120px;
-  }
-  .logo {
-    width: 78px;
-    height: 48px;
-    float: left;
-    background: url('assets/pacman-logo.svg');
   }
   .main-container {
     margin: 48px auto;
@@ -139,6 +135,7 @@ export default {
       height: 24px;
       text-align: center;
       margin-top: 8px;
+      padding-top: 4px;
     }
     &__main-title {
       margin-left: 106px;
@@ -159,66 +156,5 @@ export default {
       margin-top: 24px;
       margin-left: 106px;
     }
-  }
-  .main-title {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: 0.015em;
-    font-size: 56px;
-    line-height: 72px;
-    color: #FFFFFF;
-  }
-  .undertitle {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: 0.022em;
-    font-size: 24px;
-    line-height: 32px;
-    color: #A3B8CC;
-  }
-  .number {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 24px;
-    color: #667380;
-  }
-  .title {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    font-size: 32px;
-    line-height: 40px;
-    color: #FFFFFF;
-  }
-  .scroll {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #667380;
-    transform: rotate(-90deg);
-  }
-  .scroll-arrow {
-    width: 24px;
-    height: 24px;
-    margin-top: 13px;
-    margin-left: 6px;
-    background: url('./assets/scroll-arrow.svg');
-    background-repeat: no-repeat;
-  }
-  .robots {
-    width: 366px;
-    margin-left: 662px;
-    background-repeat: no-repeat;
   }
 </style>

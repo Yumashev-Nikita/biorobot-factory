@@ -1,15 +1,13 @@
 import { createStore } from 'vuex';
 
-import cryptoWallet from './modules/crypto-wallet';
-import partMarket from './modules/part-market';
-import partStorage from './modules/part-storage';
-import fabricationModule from './modules/fabrication-module';
+import CRYPTO_WALLET from './modules/crypto-wallet';
+import PARTS from './modules/parts';
+import FABRICATION from './modules/fabrication';
 
 export default createStore({
   modules: {
-    cW: cryptoWallet,
-    pM: partMarket,
-    pS: partStorage,
-    fW: fabricationModule,
+    cryptowallet: CRYPTO_WALLET,
+    parts: PARTS,
+    fabrication: FABRICATION,
   },
 });
