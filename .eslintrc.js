@@ -9,11 +9,6 @@ module.exports = {
   ],
   parserOptions: {
     parser: '@babel/eslint-parser',
-    babelOptions: {
-      plugins: [
-        '@babel/plugin-syntax-import-assertions',
-      ],
-    },
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

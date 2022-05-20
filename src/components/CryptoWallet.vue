@@ -35,8 +35,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use '../style/textstyles';
-@use '../style/sprites';
+  @use '../style/textstyles';
+  @use '../style/sprites';
   .coins {
     display: flex;
     &__coin {

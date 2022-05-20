@@ -58,7 +58,7 @@
   color: #FFFFFF;
 }
 
-/* PartMarket */
+/* PartMarket and PartStorage */
 
 .cost {
   @extend %maintypo;
@@ -67,6 +67,12 @@
   color: #A3B8CC;
 }
 .name {
+  @extend %maintypo;
+  @extend %infotext20_32;
+  text-align: center;
+  color: #FFFFFF;
+}
+.amount {
   @extend %maintypo;
   @extend %infotext20_32;
   text-align: center;

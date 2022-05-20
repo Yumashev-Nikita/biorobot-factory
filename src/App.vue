@@ -69,7 +69,6 @@
         <div class="section__main-part">
           <div class="section__scroll"></div>
           <div class="section__component">
-            <PartStorage/>
           </div>
         </div>
       </div>
@@ -82,6 +81,7 @@
 import GenericButton from './components/GenericButton.vue';
 import CryptoWallet from './components/CryptoWallet.vue';
 import PartMarket from './components/PartMarket.vue';
+import PartStorage from './components/PartStorage.vue';
 
 export default {
   name: 'app',
@@ -89,6 +89,7 @@ export default {
     GenericButton,
     CryptoWallet,
     PartMarket,
+    PartStorage,
   },
   data() {
     return {
@@ -99,8 +100,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@use './style/textstyles';
-@use './style/sprites';
+  @use './style/textstyles';
+  @use './style/sprites';
   .app-container {
     z-index: 0;
     position: absolute;
