@@ -7,7 +7,11 @@
                   @keyup.enter="submit" @click="farmCoins">
     Нацыганить
   </div>
-  <div class="condition-checkbox" @keyup.enter="submit" @click="switchStackMode"></div>
+  <div class="checkbox-wrapper">
+    <div class="condition-checkbox" @keyup.enter="submit" @click="setStackMode">
+      <div class="checkmark" v-if="stackMode"></div>
+    </div>
+  </div>
   <div class="condition condition_text">Цыганить по 5 монет</div>
 </template>
 
@@ -21,9 +25,10 @@ export default {
     const store = useStore();
     return {
       coins: computed(() => store.state.cW.coins),
+      stackMode: computed(() => store.state.cW.stackedCoinFarm),
       textCased: computed(() => store.state.cW.balanceTextCased),
-      farmCoins: () => store.dispatch('farmAndCase'),
-      switchStackMode: () => store.commit('switchStackMode'),
+      farmCoins: () => store.dispatch('farmCoins'),
+      setStackMode: () => store.dispatch('setStackMode'),
     };
   },
 };
@@ -32,11 +37,10 @@ export default {
 <style lang="scss" scoped>
   .coins {
     display: flex;
-    flex-direction: row-reverse;
     &__coin {
       width: 20px;
       height: 20px;
-      margin-right: -12px;
+      margin-right: -12.4px;
       background: url('../assets/coin.svg');
       background-repeat: no-repeat;
     }
@@ -61,7 +65,7 @@ export default {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    letter-spacing: 0.035em;
+    letter-spacing: 0.015em;
     font-size: 16px;
     line-height: 24px;
     color: #FF7F22;
@@ -69,12 +73,18 @@ export default {
     text-underline-position: under;
     cursor: pointer;
   }
-  .condition-checkbox {
+  .checkbox-wrapper {
     display: inline-block;
+    margin-bottom: -6px;
+    margin-left: 29px;
+  }
+  .condition-checkbox {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 24px;
     height: 24px;
-    margin-bottom: -8px;
-    margin-left: 29px;
     border: 2px solid #A3B8CC;
     box-sizing: border-box;
   }
@@ -90,9 +100,13 @@ export default {
     line-height: 24px;
     color: #FFFFFF;
   }
+  .checkmark {
+    width: 14px;
+    height: 12px;
+    background: url('../assets/checkmark.svg');
+    background-repeat: no-repeat;
+  }
   .disable-select {
     user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
   }
 </style>

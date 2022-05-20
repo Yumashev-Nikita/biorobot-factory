@@ -5,14 +5,18 @@
       <div class="part__thumbnail shadow-filter biohand"></div>
       <div class="part__name name">Биорука</div>
       <div class="part__cost cost">Стоимость: 7 монет</div>
-      <div class="part__button-wrapper"><GenericButton text='Установить' width='200px'/></div>
+      <div class="part__button-wrapper"><GenericButton
+        @click="buyBiohand" text='Установить' width='200px'/>
+      </div>
     </div>
 
     <div class="part">
       <div class="part__thumbnail shadow-filter microchip"></div>
       <div class="part__name name">Микрочип</div>
       <div class="part__cost cost">Стоимость: 5 монет</div>
-      <div class="part__button-wrapper"><GenericButton text='Установить' width='200px'/></div>
+      <div class="part__button-wrapper"><GenericButton
+        @click="buyMicrochip" text='Установить' width='200px'/>
+      </div>
     </div>
 
     <div class="part">
@@ -23,13 +27,16 @@
       </div>
       <div class="part__name name">Душа</div>
       <div class="part__cost cost">Стоимость: 25 монет</div>
-      <div class="part__button-wrapper"><GenericButton text='Установить' width='200px'/></div>
+      <div class="part__button-wrapper"><GenericButton
+        @click="buySoul" text='Установить' width='200px'/>
+      </div>
     </div>
   </div>
 
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import GenericButton from './GenericButton.vue';
 
 export default {
@@ -37,9 +44,12 @@ export default {
   components: {
     GenericButton,
   },
-  data() {
+  setup() {
+    const store = useStore();
     return {
-
+      buyBiohand: () => store.dispatch('buyBiohand'),
+      buyMicrochip: () => store.dispatch('buyMicrochip'),
+      buySoul: () => store.dispatch('buySoul'),
     };
   },
 };

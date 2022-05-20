@@ -15,6 +15,7 @@ export default {
     colorText: String,
     width: String,
     text: String,
+    wired: Boolean,
   },
 };
 </script>
