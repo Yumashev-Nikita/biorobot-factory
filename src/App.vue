@@ -25,7 +25,7 @@
       <div class="section">
         <div class="section__top-part">
           <div class="section__number number">02</div>
-          <div class="section__title title">Кошелёк криптовалют</div>
+          <div class="section__title section__title-title">Кошелёк криптовалют</div>
         </div>
         <div class="section__main-part">
           <div class="section__scroll"></div>
@@ -38,7 +38,7 @@
       <div class="section">
         <div class="section__top-part">
           <div class="section__number number">03</div>
-          <div class="section__title title">Рынок комплектующих</div>
+          <div class="section__title section__title-title">Рынок комплектующих</div>
         </div>
         <div class="section__main-part">
           <div class="section__scroll"></div>
@@ -51,7 +51,7 @@
       <div class="section">
         <div class="section__top-part">
           <div class="section__number number">04</div>
-          <div class="section__title title">Склад</div>
+          <div class="section__title section__title-title">Склад</div>
         </div>
         <div class="section__main-part">
           <div class="section__scroll"></div>
@@ -64,11 +64,12 @@
       <div class="section">
         <div class="section__top-part">
           <div class="section__number number">05</div>
-          <div class="section__title title">Производство</div>
+          <div class="section__title section__title-title">Производство</div>
         </div>
         <div class="section__main-part">
           <div class="section__scroll"></div>
           <div class="section__component">
+            <FabricationModule/>
           </div>
         </div>
       </div>
@@ -82,6 +83,7 @@ import GenericButton from './components/GenericButton.vue';
 import CryptoWallet from './components/CryptoWallet.vue';
 import PartMarket from './components/PartMarket.vue';
 import PartStorage from './components/PartStorage.vue';
+import FabricationModule from './components/FabricationModule.vue';
 
 export default {
   name: 'app',
@@ -90,6 +92,7 @@ export default {
     CryptoWallet,
     PartMarket,
     PartStorage,
+    FabricationModule,
   },
   data() {
     return {

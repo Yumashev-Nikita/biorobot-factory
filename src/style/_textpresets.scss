@@ -3,6 +3,8 @@
   font-style: normal;
 }
 
+@media (min-width: 1920px){
+
 %h1semibold56_72 {
   font-size: 56px;
   line-height: 72px;
@@ -43,4 +45,6 @@
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
+}
+
 }

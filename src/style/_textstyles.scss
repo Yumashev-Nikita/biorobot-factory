@@ -19,7 +19,7 @@
   @extend %secondtext12_16;
   color: #667380;
 }
-.title {
+.section__title-title {
   @extend %maintypo;
   @extend %h2semibold32_40;
   letter-spacing: 0.02em;
@@ -75,6 +75,21 @@
 .amount {
   @extend %maintypo;
   @extend %infotext20_32;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+/* Favrication */
+
+.changer__title-title {
+  @extend %maintypo;
+  @extend %mediumtext14_20;
+  color: #FFFFFF;
+}
+
+.changer__case-text {
+  @extend %maintypo;
+  @extend %secondtext12_16;
   text-align: center;
   color: #FFFFFF;
 }
