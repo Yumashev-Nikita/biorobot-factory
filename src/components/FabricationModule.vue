@@ -1,54 +1,67 @@
 <template>
-
-  <div class="changer">
-    <div class="changer__title changer__title-title">Тип биоробота:</div>
-    <div class="changer__switches-container">
-      <div class="switch-wrapper">
-        <div class="switch" v-if="type === 'frontend'"></div>
+  <div class="top-part-container">
+    <div class="changers-container">
+    <div class="changer">
+      <div class="changer__title changer__title-title">Тип биоробота:</div>
+        <div class="changer__switches-container">
+          <div class="switch-wrapper">
+            <div class="switch" v-if="type === 'frontend'"></div>
+          </div>
+          <div class="changer__case changer__case-text">FrontEnd</div>
+          <div class="switch-wrapper">
+            <div class="switch" v-if="type === 'design'"></div>
+          </div>
+          <div class="changer__case changer__case-text">Design</div>
+        </div>
       </div>
-      <div class="changer__case changer__case-text">FrontEnd</div>
-      <div class="switch-wrapper">
-        <div class="switch" v-if="type === 'design'"></div>
+      <div class="changer">
+        <div class="changer__title changer__title-title">Стабилизатор:</div>
+        <div class="changer__switches-container">
+          <div class="switch-wrapper">
+            <div class="switch" v-if="type === 'male'"></div>
+          </div>
+          <div class="changer__case changer__case-text">Male</div>
+          <div class="switch-wrapper">
+            <div class="switch" v-if="type === 'female'"></div>
+          </div>
+          <div class="changer__case changer__case-text">Female</div>
+        </div>
       </div>
-      <div class="changer__case changer__case-text">Design</div>
+    </div>
+    <div class="required-parts">
+      <div class="required-parts__parts-container">
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
+      </div>
+      <div class="required-parts__parts-container">
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
+      </div>
+      <div class="required-parts__parts-container">
+        <div class="required-parts__part-wrapper"><FabricationPart :name="'soul'"/></div>
+      </div>
     </div>
   </div>
-
-  <div class="changer">
-    <div class="changer__title changer__title-title">Стабилизатор:</div>
-    <div class="changer__switches-container">
-      <div class="switch-wrapper">
-        <div class="switch" v-if="type === 'male'"></div>
-      </div>
-      <div class="changer__case changer__case-text">Male</div>
-      <div class="switch-wrapper">
-        <div class="switch" v-if="type === 'female'"></div>
-      </div>
-      <div class="changer__case changer__case-text">Female</div>
-    </div>
+  <div class="bottom-part-container">
+    <div class="button-wrapper"></div>
+    <div class="functional-text"></div>
   </div>
-
-  <div class="required-parts">
-    <div class="required-parts__biohands">
-      .
-    </div>
-    <div class="required-parts__microchips">
-
-    </div>
-    <div class="required-parts__souls">
-
-    </div>
-  </div>
-  <div class="button-wrapper"></div>
-  <div class="functional-text"></div>
 </template>
 
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import FabricationPart from './FabricationPart.vue';
 
 export default {
   name: 'FabricationModule',
+  components: {
+    FabricationPart,
+  },
   setup() {
     const store = useStore();
     return {
@@ -96,5 +109,23 @@ export default {
     height: 16px;
     border-radius: 100%;
     background: #FF7F22;
+  }
+  .required-parts {
+    &__parts-container {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 16px;
+      margin-top: 18px;
+      margin-left: -5px;
+    }
+    &__part-wrapper {
+      width: 48px;
+      height: 48px;
+      margin-right: 10px;
+    }
+  }
+  .top-part-container {
+    display: flex;
+    flex-direction: row;
   }
 </style>

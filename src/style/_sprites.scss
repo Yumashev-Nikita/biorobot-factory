@@ -56,3 +56,51 @@
   background: url('@/assets/soul.svg');
   background-repeat: no-repeat;
 }
+
+/* Fabrication */
+
+.sprite-biohand_active {
+  width: 36px;
+  height: 24px;
+  background: url('@/assets/fab_parts/fab_biohand_active.svg');
+}
+.sprite-microchip_active {
+  width: 24px;
+  height: 24px;
+  background: url('@/assets/fab_parts/fab_microchip_active.svg');
+}
+.sprite-soul_active {
+  width: 32px;
+  height: 32px;
+  background: url('@/assets/fab_parts/fab_soul_active.svg');
+}
+.sprite-biohand_inactive {
+  width: 36px;
+  height: 24px;
+  background: url('@/assets/fab_parts/fab_biohand_inactive.svg');
+}
+.sprite-microchip_inactive {
+  width: 24px;
+  height: 24px;
+  background: url('@/assets/fab_parts/fab_microchip_inactive.svg');
+}
+.sprite-soul_inactive {
+  width: 32px;
+  height: 32px;
+  background: url('@/assets/fab_parts/fab_soul_inactive.svg');
+}
+.sprite-biohand_disable {
+  width: 36px;
+  height: 24px;
+  background: url('@/assets/fab_parts/fab_biohand_disable.svg');
+}
+.sprite-microchip_disable {
+  width: 24px;
+  height: 24px;
+  background: url('@/assets/fab_parts/fab_microchip_disable.svg');
+}
+.sprite-soul_disable {
+  width: 32px;
+  height: 32px;
+  background: url('@/assets/fab_parts/fab_soul_disable.svg');
+}
