@@ -1,10 +1,13 @@
 <template>
-  <div class="part" :class="partComputed">
+  <div class="part" :class="partComputed" @keyup="S" @click="switchActive">
     <div :class="spriteComputed"></div>
   </div>
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
   name: 'FabricationPart',
   props: {
@@ -12,9 +15,13 @@ export default {
   },
   data() {
     return {
-      isActive: true,
-      isDisable: false,
+      isActive: false,
     };
+  },
+  methods: {
+    switchActive() {
+      this.isActive = !this.isActive;
+    },
   },
   computed: {
     partComputed() {
@@ -33,14 +40,18 @@ export default {
         'sprite-microchip_inactive': this.name === 'microchip' && !this.isActive,
         'sprite-soul_inactive': this.name === 'soul' && !this.isActive,
 
-        'sprite-biohand_disable': this.name === 'biohand' && this.isDisable,
-        'sprite-microchip_disable': this.name === 'microchip' && this.isDisable,
-        'sprite-soul_disable': this.name === 'soul' && this.isDisable,
+        'sprite-biohand_disable': this.name === 'biohand' && this.isDisableBiohand,
+        'sprite-microchip_disable': this.name === 'microchip' && this.isDisableMicrochip,
+        'sprite-soul_disable': this.name === 'soul' && this.isDisableSoul,
       };
     },
   },
   setup() {
+    const store = useStore();
     return {
+      isDisableBiohand: computed(() => store.state.fabrication.isDisableBiohand),
+      isDisableMicrochip: computed(() => store.state.fabrication.isDisableMicrochip),
+      isDisableSoul: computed(() => store.state.fabrication.isDisableSoul),
     };
   },
 };

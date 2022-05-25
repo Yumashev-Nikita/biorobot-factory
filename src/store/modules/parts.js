@@ -1,6 +1,11 @@
 export default {
   namespaced: true,
   state: {
+    ENTITIES: {
+      biohand: 0,
+      microchip: 1,
+      soul: 2,
+    },
     parts: [
       {
         name: 'biohand', amount: 2, buycost: 7, sellcost: 5,
@@ -14,67 +19,50 @@ export default {
     ],
   },
   getters: {
-    getBiohandBuyCost(state) {
-      return state.parts[0].buycost;
+    getBiohandBuyCost: (state) => state.parts[state.ENTITIES.biohand].buycost,
+    getMicrochipBuyCost: (state) => state.parts[state.ENTITIES.microchip].buycost,
+    getSoulBuyCost: (state) => state.parts[state.ENTITIES.soul].buycost,
+    getBiohandSellCost: (state) => state.parts[state.ENTITIES.biohand].sellcost,
+    getMicrochipSellCost: (state) => state.parts[state.ENTITIES.microchip].sellcost,
+    getSoulSellCost: (state) => state.parts[state.ENTITIES.soul].sellcost,
+    getBiohandAmount: (state) => state.parts[state.ENTITIES.biohand].amount,
+    getMicrochipAmount: (state) => state.parts[state.ENTITIES.microchip].amount,
+    getSoulAmount: (state) => state.parts[state.ENTITIES.soul].amount,
+  },
+  mutations: {
+    TAKE_BIOHAND(state) {
+      console.log('TAKE_BIOHAND');
+      if (state.parts[state.ENTITIES.biohand].amount !== 0) {
+        state.parts[state.ENTITIES.biohand].amount -= 1;
+      }
     },
-    getMicrochipBuyCost(state) {
-      return state.parts[1].buycost;
+    TAKE_MICROCHIP(state) {
+      console.log('TAKE_MICROCHIP');
+      if (state.parts[state.ENTITIES.microchip].amount !== 0) {
+        state.parts[state.ENTITIES.microchip].amount -= 1;
+      }
     },
-    getSoulBuyCost(state) {
-      return state.parts[2].buycost;
+    TAKE_SOUL(state) {
+      console.log('TAKE_SOUL');
+      if (state.parts[state.ENTITIES.soul].amount !== 0) {
+        state.parts[state.ENTITIES.soul].amount -= 1;
+      }
     },
-    getBiohandSellCost(state) {
-      return state.parts[0].sellcost;
+    ADD_BIOHAND(state) {
+      console.log('ADD_BIOHAND');
+      state.parts[state.ENTITIES.biohand].amount += 1;
     },
-    getMicrochipSellCost(state) {
-      return state.parts[1].sellcost;
+    ADD_MICROCHIP(state) {
+      console.log('ADD_MICROCHIP');
+      state.parts[state.ENTITIES.microchip].amount += 1;
     },
-    getSoulSellCost(state) {
-      return state.parts[2].sellcost;
+    ADD_SOUL(state) {
+      console.log('ADD_SOUL');
+      state.parts[state.ENTITIES.soul].amount += 1;
     },
   },
   actions: {
-    buyBiohand: {
-      root: true,
-      handler(namespacedContext) {
-        namespacedContext.commit('cryptowallet/SET_COINS_TAKE_AMOUNT', this.getters['parts/getBiohandBuyCost'], { root: true });
-        namespacedContext.commit('cryptowallet/SET_TEXT_CASE', null, { root: true });
-      },
-    },
-    buyMicrochip: {
-      root: true,
-      handler(namespacedContext) {
-        namespacedContext.commit('cryptowallet/SET_COINS_TAKE_AMOUNT', this.getters['parts/getMicrochipBuyCost'], { root: true });
-        namespacedContext.commit('cryptowallet/SET_TEXT_CASE', null, { root: true });
-      },
-    },
-    buySoul: {
-      root: true,
-      handler(namespacedContext) {
-        namespacedContext.commit('cryptowallet/SET_COINS_TAKE_AMOUNT', this.getters['parts/getSoulBuyCost'], { root: true });
-        namespacedContext.commit('cryptowallet/SET_TEXT_CASE', null, { root: true });
-      },
-    },
-    sellBiohand: {
-      root: true,
-      handler(namespacedContext) {
-        namespacedContext.commit('cryptowallet/SET_COINS_ADD_AMOUNT', this.getters['parts/getBiohandSellCost'], { root: true });
-        namespacedContext.commit('cryptowallet/SET_TEXT_CASE', null, { root: true });
-      },
-    },
-    sellMicrochip: {
-      root: true,
-      handler(namespacedContext) {
-        namespacedContext.commit('cryptowallet/SET_COINS_ADD_AMOUNT', this.getters['parts/getMicrochipSellCost'], { root: true });
-        namespacedContext.commit('cryptowallet/SET_TEXT_CASE', null, { root: true });
-      },
-    },
-    sellSoul: {
-      root: true,
-      handler(namespacedContext) {
-        namespacedContext.commit('cryptowallet/SET_COINS_ADD_AMOUNT', this.getters['parts/getSoulSellCost'], { root: true });
-        namespacedContext.commit('cryptowallet/SET_TEXT_CASE', null, { root: true });
-      },
-    },
+  },
+  modules: {
   },
 };

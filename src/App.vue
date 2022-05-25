@@ -94,19 +94,12 @@ export default {
     PartStorage,
     FabricationModule,
   },
-  data() {
-    return {
-      coins: 0,
-      h_level: 1,
-    };
-  },
 };
 </script>
 <style lang="scss" scoped>
   @use './style/textstyles';
   @use './style/sprites';
   .app-container {
-    z-index: 0;
     position: absolute;
     top: 0;
     left: 0;

@@ -105,6 +105,6 @@ export default {
     padding-top: 7px;
   }
   .shadow-filter {
-    filter: drop-shadow(0px 8px 60px #FF7F22);
+    filter: drop-shadow(0px 8px 40px #FF7F22);
   }
 </style>
