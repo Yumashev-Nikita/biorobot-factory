@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
 
-import CRYPTO_WALLET from './modules/crypto-wallet';
+import WALLET from './modules/wallet';
 import PARTS from './modules/parts';
 import FABRICATION from './modules/fabrication';
 import BIOHANDS from './modules/biohands';
@@ -9,11 +9,11 @@ import SOULS from './modules/souls';
 
 export default createStore({
   modules: {
-    cryptowallet: CRYPTO_WALLET,
+    wallet: WALLET,
     parts: PARTS,
     fabrication: FABRICATION,
-    biohands: BIOHANDS,
-    microchips: MICROCHIPS,
-    souls: SOULS,
+    biohand: BIOHANDS,
+    microchip: MICROCHIPS,
+    soul: SOULS,
   },
 });

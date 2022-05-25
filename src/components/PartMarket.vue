@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 import GenericButton from './GenericButton.vue';
 
@@ -51,9 +52,10 @@ export default {
   setup() {
     const store = useStore();
     return {
-      buyBiohand: () => store.dispatch('buyBiohand'),
-      buyMicrochip: () => store.dispatch('buyMicrochip'),
-      buySoul: () => store.dispatch('buySoul'),
+      soulMarketDisable: computed(() => store.getters['soul/getMarketState']),
+      buyBiohand: () => store.dispatch('buyPart', 'biohand'),
+      buyMicrochip: () => store.dispatch('buyPart', 'microchip'),
+      buySoul: () => store.dispatch('buyPart', 'soul'),
     };
   },
 };

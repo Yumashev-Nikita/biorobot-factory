@@ -1,20 +1,25 @@
+import WALLET from './wallet';
+
 export default {
   namespaced: true,
   state: {
     amount: 2,
-    buycost: 5,
-    sellcost: 3,
-    marketDisable: false,
-    storageDisable: false,
-    fabDisable: false,
+    buycost: 7,
+    sellcost: 5,
   },
   getters: {
     getAmount: (state) => state.amount,
-    getBuycost: (state) => state.buycost,
-    getSellcost: (state) => state.sellcost,
-    getFabState: (state) => state.fabDisable,
-    getMarketState: (state) => state.marketDisable,
-    getStorageState: (state) => state.storageDisable,
+    getBuyCost: (state) => state.buycost,
+    getSellCost: (state) => state.sellcost,
+    getZeroState: (state) => state.amount === 0,
+    getMarketState: (state, getters) => {
+      console.log(getters['wallet/getCoins']);
+      let marketDisable = false;
+      if (getters['wallet/getCoins'] < state.buycost) {
+        marketDisable = true;
+      }
+      return marketDisable;
+    },
   },
   mutations: {
     ADD: (state) => { state.amount += 1; },
@@ -26,5 +31,6 @@ export default {
   actions: {
   },
   modules: {
+    wallet: WALLET,
   },
 };

@@ -3,12 +3,11 @@
     <div class="coins__coin coin" v-for="coin in coins" :key="coin"></div>
   </div>
   <div class="balance balance_text">{{ coins }} biorobo {{ textCased }}</div>
-  <div class="make-money-button make-money-button_text disable-select"
-                  @keyup.enter="submit" @click="farmCoins">
+  <div class="make-money-button make-money-button_text disable-select" @click="farmCoins">
     Нацыганить
   </div>
   <div class="checkbox-wrapper">
-    <div class="condition-checkbox" @keyup.enter="submit" @click="setStackMode">
+    <div class="condition-checkbox" @click="switchStackMode">
       <div class="checkmark" v-if="stackMode"></div>
     </div>
   </div>
@@ -24,11 +23,11 @@ export default {
   setup() {
     const store = useStore();
     return {
-      coins: computed(() => store.state.cryptowallet.coins),
-      stackMode: computed(() => store.state.cryptowallet.stackedCoinFarm),
-      textCased: computed(() => store.state.cryptowallet.balanceTextCased),
+      coins: computed(() => store.getters['wallet/getCoins']),
+      stackMode: computed(() => store.getters['wallet/getStackMode']),
+      textCased: computed(() => store.getters['wallet/getTextCased']),
       farmCoins: () => store.dispatch('farmCoins'),
-      setStackMode: () => store.dispatch('setStackMode'),
+      switchStackMode: () => store.dispatch('wallet/switchStackMode'),
     };
   },
 };

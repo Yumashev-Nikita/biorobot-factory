@@ -44,13 +44,12 @@ export default {
   setup() {
     const store = useStore();
     return {
-      biohandAmount: computed(() => store.state.parts.parts[0].amount),
-      microchipAmount: computed(() => store.state.parts.parts[1].amount),
-      soulAmount: computed(() => store.state.parts.parts[2].amount),
-
-      sellBiohand: () => store.dispatch('sellBiohand'),
-      sellMicrochip: () => store.dispatch('sellMicrochip'),
-      sellSoul: () => store.dispatch('sellSoul'),
+      biohandAmount: computed(() => store.getters['biohand/getAmount']),
+      microchipAmount: computed(() => store.getters['microchip/getAmount']),
+      soulAmount: computed(() => store.getters['soul/getAmount']),
+      sellBiohand: () => store.dispatch('sellPart', 'biohand'),
+      sellMicrochip: () => store.dispatch('sellPart', 'microchip'),
+      sellSoul: () => store.dispatch('sellPart', 'soul'),
     };
   },
 };

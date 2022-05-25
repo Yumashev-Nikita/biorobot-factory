@@ -1,15 +1,15 @@
 <template>
   <div class="top-part-container">
     <div class="changers-container">
-    <div class="changer">
-      <div class="changer__title changer__title-title">Тип биоробота:</div>
+      <div class="changer">
+        <div class="changer__title changer__title-title">Тип биоробота:</div>
         <div class="changer__switches-container">
           <div class="switch-wrapper">
-            <div class="switch" v-if="type === 'frontend'"></div>
+            <div :class='{ switch: type }'></div>
           </div>
           <div class="changer__case changer__case-text">FrontEnd</div>
           <div class="switch-wrapper">
-            <div class="switch" v-if="type === 'design'"></div>
+            <div :class='{ switch: !type }'></div>
           </div>
           <div class="changer__case changer__case-text">Design</div>
         </div>
@@ -18,11 +18,11 @@
         <div class="changer__title changer__title-title">Стабилизатор:</div>
         <div class="changer__switches-container">
           <div class="switch-wrapper">
-            <div class="switch" v-if="type === 'male'"></div>
+            <div :class='{ switch: gender }'></div>
           </div>
           <div class="changer__case changer__case-text">Male</div>
-          <div class="switch-wrapper">
-            <div class="switch" v-if="type === 'female'"></div>
+          <div class="switch-wrapper" >
+            <div :class='{ switch: !gender }'></div>
           </div>
           <div class="changer__case changer__case-text">Female</div>
         </div>
@@ -30,19 +30,19 @@
     </div>
     <div class="required-parts">
       <div class="required-parts__parts-container">
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'biohand'"/></div>
+        <div class="required-parts__part-wrapper"><BiohandPart/></div>
+        <div class="required-parts__part-wrapper"><BiohandPart/></div>
+        <div class="required-parts__part-wrapper"><BiohandPart/></div>
+        <div class="required-parts__part-wrapper"><BiohandPart/></div>
       </div>
       <div class="required-parts__parts-container">
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'microchip'"/></div>
+        <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+        <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+        <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+        <div class="required-parts__part-wrapper"><MicrochipPart/></div>
       </div>
       <div class="required-parts__parts-container">
-        <div class="required-parts__part-wrapper"><FabricationPart :name="'soul'"/></div>
+        <div class="required-parts__part-wrapper"><SoulPart/></div>
       </div>
     </div>
   </div>
@@ -55,17 +55,24 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import FabricationPart from './FabricationPart.vue';
+import BiohandPart from './BiohandPart.vue';
+import MicrochipPart from './MicrochipPart.vue';
+import SoulPart from './SoulPart.vue';
 
 export default {
   name: 'FabricationModule',
   components: {
-    FabricationPart,
+    BiohandPart,
+    MicrochipPart,
+    SoulPart,
   },
   setup() {
     const store = useStore();
     return {
-      type: computed(() => store.state.fabrication.type),
+      type: computed(() => store.getters['fabrication/getType']),
+      gender: computed(() => store.getters['fabrication/getGender']),
+      switchType: () => store.commit('fabrication/SWITCH_TYPE'),
+      switchGender: () => store.commit('fabrication/SWITCH_GENDER'),
     };
   },
 };
@@ -75,7 +82,7 @@ export default {
   @use '../style/textstyles';
   @use '../style/sprites';
   .changer{
-    width: 265px;
+    width: 270px;
     margin-top: 15px;
     &__title {
       margin-bottom: 20px;
