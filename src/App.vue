@@ -3,7 +3,8 @@
     <div class="main-container">
       <div class="top-bar">
         <div class="logo"></div>
-        <GenericButton text='Произвести биоробота' width='236px'/>
+        <div class="button-main wd236 button-orange button-text"
+      @click="sellSoul">Произвести биоробота</div>
       </div>
 
       <div class="robots"></div>
@@ -79,7 +80,6 @@
 </template>
 
 <script>
-import GenericButton from './components/GenericButton.vue';
 import CryptoWallet from './components/CryptoWallet.vue';
 import PartMarket from './components/PartMarket.vue';
 import PartStorage from './components/PartStorage.vue';
@@ -88,7 +88,6 @@ import FabricationModule from './components/FabricationModule.vue';
 export default {
   name: 'app',
   components: {
-    GenericButton,
     CryptoWallet,
     PartMarket,
     PartStorage,
@@ -99,6 +98,7 @@ export default {
 <style lang="scss" scoped>
   @use './style/textstyles';
   @use './style/sprites';
+  @use './style/buttonstyle';
   .app-container {
     position: absolute;
     top: 0;

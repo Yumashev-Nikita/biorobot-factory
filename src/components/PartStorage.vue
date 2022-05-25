@@ -5,8 +5,8 @@
       <div class="part__name name">Биорука</div>
       <div class="part__cost cost">Стоимость: 5 монет</div>
       <div class="part__amount amount"> {{ biohandAmount }} шт </div>
-      <div class="part__button-wrapper"><GenericButton
-        @click="sellBiohand" text='Продать' width='200px'/>
+      <div class="part__button-wrapper"><div class="button-main wd200 button-blue button-text"
+      @click="sellBiohand">Установить</div>
       </div>
     </div>
 
@@ -14,8 +14,8 @@
       <div class="part__name name">Микрочип</div>
       <div class="part__cost cost">Стоимость: 3 монеты</div>
       <div class="part__amount amount"> {{ microchipAmount }} шт </div>
-      <div class="part__button-wrapper"><GenericButton
-        @click="sellMicrochip" text='Продать' width='200px'/>
+      <div class="part__button-wrapper"><div class="button-main wd200 button-blue button-text"
+      @click="sellMicrochip">Установить</div>
       </div>
     </div>
 
@@ -23,8 +23,8 @@
       <div class="part__name name">Душа</div>
       <div class="part__cost cost">Стоимость: 15 монет</div>
       <div class="part__amount amount"> {{ soulAmount }} шт </div>
-      <div class="part__button-wrapper"><GenericButton
-        @click="sellSoul" text='Продать' width='200px'/>
+      <div class="part__button-wrapper"><div class="button-main wd200 button-blue button-text"
+      @click="sellSoul">Установить</div>
       </div>
       </div>
     </div>
@@ -34,13 +34,9 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import GenericButton from './GenericButton.vue';
 
 export default {
   name: 'PartStorage',
-  components: {
-    GenericButton,
-  },
   setup() {
     const store = useStore();
     return {
@@ -58,6 +54,7 @@ export default {
 <style lang="scss" scoped>
   @use '../style/textstyles';
   @use '../style/sprites';
+  @use '../style/buttonstyle';
   .parts-container {
     display: flex;
     flex-direction: row;

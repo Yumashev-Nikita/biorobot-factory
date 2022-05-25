@@ -1,5 +1,4 @@
-.button200 {
-  width: 200px;
+.button-main {
   height: 48px;
   display: flex;
   justify-content: center;
@@ -33,7 +32,7 @@
 }
 
 .button-blue {
-  border-image-source: linear-gradient(to left, #22B3E3, #7CDAF9, #22B3E3);
+  border: 2px solid #22B3E3;
 }
 
 .button-blue:hover {
