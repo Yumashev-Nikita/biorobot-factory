@@ -1,6 +1,9 @@
 <template>
-  <div class="part" :class="partComputed" @click="switchActive">
-    <div :class="spriteComputed"></div>
+  <div v-if="isDisable" class="part" :class="partComputed">
+    <div :class="spriteComputed" @click="isActive ? (putPart(), switchActive()) : null"></div>
+  </div>
+  <div v-if="!isDisable" class="part" :class="partComputed" @click="switchActive">
+    <div :class="spriteComputed" @click="isActive ? putPart() : getPart()"></div>
   </div>
 </template>
 
@@ -22,12 +25,6 @@ export default {
       this.isActive = !this.isActive;
     },
   },
-  setup() {
-    const store = useStore();
-    return {
-      isDisable: computed(() => store.getters['microchip/getZeroState']),
-    };
-  },
   computed: {
     partComputed() {
       return {
@@ -39,9 +36,17 @@ export default {
       return {
         'sprite-microchip_active': this.isActive,
         'sprite-microchip_inactive': !this.isActive,
-        'sprite-microchip_disable': this.isDisable,
+        'sprite-microchip_disable': this.isDisable && !this.isActive,
       };
     },
+  },
+  setup() {
+    const store = useStore();
+    return {
+      isDisable: computed(() => store.getters['microchip/getZeroState']),
+      getPart: () => store.dispatch('getPart', 'microchip'),
+      putPart: () => store.dispatch('putPart', 'microchip'),
+    };
   },
 };
 </script>

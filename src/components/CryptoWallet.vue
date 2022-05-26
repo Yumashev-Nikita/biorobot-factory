@@ -26,7 +26,7 @@ export default {
       coins: computed(() => store.getters['wallet/getCoins']),
       stackMode: computed(() => store.getters['wallet/getStackMode']),
       textCased: computed(() => store.getters['wallet/getTextCased']),
-      farmCoins: () => store.dispatch('farmCoins'),
+      farmCoins: () => store.dispatch('wallet/farmCoins'),
       switchStackMode: () => store.dispatch('wallet/switchStackMode'),
     };
   },

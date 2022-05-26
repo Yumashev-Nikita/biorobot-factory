@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     coins: 45,
-    stackedCoinFarm: false,
+    stackedCoinFarm: true,
   },
   getters: {
     getCoins: (state) => state.coins,
@@ -28,14 +28,11 @@ export default {
     TAKE_COINS_AMOUNT: (state, amount) => { state.coins -= amount; },
   },
   actions: {
-    farmCoins: {
-      root: true,
-      handler(namespacedContext) {
-        namespacedContext.commit('ADD_COINS_FIXED');
-      },
+    farmCoins() {
+      this.commit('wallet/ADD_COINS_FIXED');
     },
-    switchStackMode(namespacedContext) {
-      namespacedContext.commit('SWITCH_STACK_MODE');
+    switchStackMode() {
+      this.commit('wallet/SWITCH_STACK_MODE');
     },
   },
   modules: {
