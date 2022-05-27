@@ -3,7 +3,7 @@
     <div class="main-container">
       <div class="top-bar">
         <div class="logo"></div>
-        <div class="button-main wd236 button-orange button-text"
+        <div class="button-main wd236 button-orange-wired button-text"
       @click="sellSoul">Произвести биоробота</div>
       </div>
 

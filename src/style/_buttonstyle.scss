@@ -28,11 +28,12 @@
 }
 
 .button-orange-wired {
+  transition: background 0.1s linear;
   border: 2px solid #FF7F22;
 }
 
 .button-orange-wired:hover {
-  background: #FF5722;
+  background:#FF5722;
 }
 
 .button-orange-wired:active {
@@ -44,6 +45,7 @@
 }
 
 .button-blue {
+  transition: background 0.05s linear, box-shadow 0.05s linear;
   border: 2px solid #22B3E3;
 }
 
@@ -54,6 +56,7 @@
 
 .button-blue:active {
   border: 2px solid #22B3E3;
+  background: #7cdaf900;
 }
 
 .button-disable-wired {
