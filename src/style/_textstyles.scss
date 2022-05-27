@@ -79,7 +79,7 @@
   color: #FFFFFF;
 }
 
-/* Favrication */
+/* Fabrication */
 
 .changer__title-title {
   @extend %maintypo;
@@ -92,6 +92,13 @@
   @extend %secondtext12_16;
   text-align: center;
   color: #FFFFFF;
+}
+
+.functional-text {
+  @extend %maintypo;
+  @extend %secondtext12_16;
+  max-width: 195px;
+  color: #A3B8CC;
 }
 
 /* Buttons */

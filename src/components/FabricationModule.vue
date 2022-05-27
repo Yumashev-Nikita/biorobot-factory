@@ -47,8 +47,13 @@
     </div>
   </div>
   <div class="bottom-part-container">
-    <div class="button-wrapper"></div>
-    <div class="functional-text"></div>
+    <div class="button-wrapper">
+      <div class="button-main wd236 button-orange-wired button-text">Произвести за 10 монет
+      </div>
+    </div>
+    <div class="func-text-wrapper">
+      <div class="functional-text">{{ funcText }}</div>
+    </div>
   </div>
 </template>
 
@@ -71,6 +76,7 @@ export default {
     return {
       type: computed(() => store.getters['fabrication/getType']),
       gender: computed(() => store.getters['fabrication/getGender']),
+      funcText: computed(() => store.getters['fabrication/getFuncText']),
       switchType: () => store.commit('fabrication/SWITCH_TYPE'),
       switchGender: () => store.commit('fabrication/SWITCH_GENDER'),
     };
@@ -81,6 +87,7 @@ export default {
 <style lang="scss" scoped>
   @use '../style/textstyles';
   @use '../style/sprites';
+  @use '../style/buttonstyle';
   .changer{
     width: 270px;
     margin-top: 15px;
@@ -134,5 +141,21 @@ export default {
   .top-part-container {
     display: flex;
     flex-direction: row;
+  }
+  .button-wrapper {
+    margin-left: -40px;
+  }
+  .bottom-part-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40px;
+  }
+  .func-text-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 195px;
+    margin-left: 30px;
   }
 </style>

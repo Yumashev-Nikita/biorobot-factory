@@ -1,4 +1,5 @@
 /* eslint-disable prefer-template */
+import WALLET from './wallet';
 
 export default {
   namespaced: true,
@@ -12,6 +13,17 @@ export default {
   getters: {
     getType: (state) => state.type,
     getGender: (state) => state.gender,
+    getFuncText: (state, getters) => {
+      let funcText = 'Для производства биоробота не хватает ';
+      const biohandsAmount = state.biohands;
+      const microchipsAmount = state.microchips;
+      const soulsAmount = state.souls;
+      console.log(biohandsAmount, microchipsAmount, soulsAmount, getters['wallet/getCoins']);
+      if (biohandsAmount === 4 && microchipsAmount === 4 && soulsAmount === 1 && getters['wallet/getCoins'] > 10) {
+        funcText = 'Для производства биоробота всего хватает.';
+      }
+      return funcText;
+    },
   },
   mutations: {
     SWITCH_TYPE: (state) => { state.type = !state.type; },
@@ -72,5 +84,6 @@ export default {
     },
   },
   modules: {
+    wallet: WALLET,
   },
 };
