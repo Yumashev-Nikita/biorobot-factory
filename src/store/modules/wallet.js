@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     coins: 45,
-    stackedCoinFarm: true,
+    stackedCoinFarm: false,
   },
   getters: {
     getCoins: (state) => state.coins,
