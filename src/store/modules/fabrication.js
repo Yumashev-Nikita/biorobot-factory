@@ -1,4 +1,5 @@
-/* eslint-disable prefer-template */
+/* eslint-disable prefer-template, prefer-const */
+
 import WALLET from './wallet';
 
 export default {
@@ -14,15 +15,38 @@ export default {
     getType: (state) => state.type,
     getGender: (state) => state.gender,
     getFuncText: (state, getters) => {
-      let funcText = 'Для производства биоробота не хватает ';
       const biohandsAmount = state.biohands;
       const microchipsAmount = state.microchips;
       const soulsAmount = state.souls;
-      console.log(biohandsAmount, microchipsAmount, soulsAmount, getters['wallet/getCoins']);
-      if (biohandsAmount === 4 && microchipsAmount === 4 && soulsAmount === 1 && getters['wallet/getCoins'] > 10) {
-        funcText = 'Для производства биоробота всего хватает.';
+      const balance = getters['wallet/getCoins'];
+      let finalText = ['Для производства биоробота не хватает '];
+      if (biohandsAmount === 4 && microchipsAmount === 4 && soulsAmount === 1 && balance > 10) {
+        finalText[0] = 'Для производства биоробота всего хватает';
+      } else {
+        let isFirst = true;
+        if (biohandsAmount !== 4) {
+          const bhReq = 4 - biohandsAmount;
+          finalText.push(bhReq + ' биорук' + (bhReq === 1 ? 'и' : ''));
+          isFirst = false;
+        }
+        if (microchipsAmount !== 4) {
+          const mcrReq = 4 - microchipsAmount;
+          if (!isFirst) finalText.push(', ');
+          finalText.push(mcrReq + ' микрочип' + (mcrReq === 2 ? 'a' : 'ов'));
+        }
+        if (soulsAmount !== 1) {
+          const soulReq = 1 - soulsAmount;
+          if (!isFirst) finalText.push(', ');
+          finalText.push(soulReq + ' души');
+        }
+        if (balance < 10) {
+          if (!isFirst) finalText.push(', ');
+          finalText.push('денег');
+        }
       }
-      return funcText;
+      let index = finalText.lastIndexOf(', ');
+      finalText[index] = ' и ';
+      return finalText.join('') + '.';
     },
   },
   mutations: {

@@ -91,6 +91,7 @@ export default {
   .changer{
     width: 270px;
     margin-top: 15px;
+    min-width: 190px;
     &__title {
       margin-bottom: 20px;
     }
@@ -130,7 +131,7 @@ export default {
       flex-direction: row;
       margin-bottom: 16px;
       margin-top: 18px;
-      margin-left: -5px;
+      margin-left: -10px;
     }
     &__part-wrapper {
       width: 48px;
@@ -143,7 +144,7 @@ export default {
     flex-direction: row;
   }
   .button-wrapper {
-    margin-left: -40px;
+    margin-left: -30px;
   }
   .bottom-part-container {
     display: flex;
@@ -155,7 +156,7 @@ export default {
   .func-text-wrapper {
     display: flex;
     justify-content: center;
-    max-width: 195px;
+    max-width: 205px;
     margin-left: 30px;
   }
 </style>

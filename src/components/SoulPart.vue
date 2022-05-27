@@ -1,9 +1,11 @@
 <template>
-  <div v-if="isDisable" class="part" :class="partComputed">
-    <div :class="spriteComputed" @click="isActive ? (putPart(), switchActive()) : null"></div>
+  <div v-if="isDisable" class="part" :class="partComputed"
+  @click="isActive ? (putPart(), switchActive()) : null">
+    <div :class="spriteComputed"></div>
   </div>
-  <div v-if="!isDisable" class="part" :class="partComputed" @click="switchActive">
-    <div :class="spriteComputed" @click="isActive ? putPart() : getPart()"></div>
+  <div v-if="!isDisable" class="part" :class="partComputed"
+  @click="isActive ? putPart() : getPart();switchActive()">
+    <div :class="spriteComputed"></div>
   </div>
 </template>
 
