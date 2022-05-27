@@ -43,7 +43,7 @@ export default {
   setup() {
     const store = useStore();
     return {
-      isDisable: computed(() => store.getters['microchip/getZeroState']),
+      isDisable: computed(() => store.getters['microchip/getSellState']),
       getPart: () => store.dispatch('getPart', 'microchip'),
       putPart: () => store.dispatch('putPart', 'microchip'),
     };

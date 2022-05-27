@@ -43,7 +43,7 @@ export default {
   setup() {
     const store = useStore();
     return {
-      isDisable: computed(() => store.getters['biohand/getZeroState']),
+      isDisable: computed(() => store.getters['biohand/getSellState']),
       getPart: () => store.dispatch('getPart', 'biohand'),
       putPart: () => store.dispatch('putPart', 'biohand'),
     };

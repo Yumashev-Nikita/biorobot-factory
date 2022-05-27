@@ -43,7 +43,7 @@ export default {
   setup() {
     const store = useStore();
     return {
-      isDisable: computed(() => store.getters['soul/getZeroState']),
+      isDisable: computed(() => store.getters['soul/getSellState']),
       getPart: () => store.dispatch('getPart', 'soul'),
       putPart: () => store.dispatch('putPart', 'soul'),
     };
