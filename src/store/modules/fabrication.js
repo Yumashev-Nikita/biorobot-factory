@@ -7,6 +7,7 @@ export default {
   state: {
     type: true,
     gender: true,
+    ready: false,
     biohands: 0,
     microchips: 0,
     souls: 0,
@@ -14,13 +15,24 @@ export default {
   getters: {
     getType: (state) => state.type,
     getGender: (state) => state.gender,
+    getStatus: (state, getters) => {
+      let status = '';
+      if (state.ready) {
+        status = 'ready';
+      } else if (state.biohands === 4 && state.microchips === 4 && state.souls === 1 && getters['wallet/getCoins'] >= 10) {
+        status = 'available';
+      } else {
+        status = 'blocked';
+      }
+      return status;
+    },
     getFuncText: (state, getters) => {
       const biohandsAmount = state.biohands;
       const microchipsAmount = state.microchips;
       const soulsAmount = state.souls;
       const balance = getters['wallet/getCoins'];
       let finalText = ['Для производства биоробота не хватает '];
-      if (biohandsAmount === 4 && microchipsAmount === 4 && soulsAmount === 1 && balance > 10) {
+      if (biohandsAmount === 4 && microchipsAmount === 4 && soulsAmount === 1 && balance >= 10) {
         finalText[0] = 'Для производства биоробота всего хватает';
       } else {
         let isFirst = true;
@@ -52,7 +64,8 @@ export default {
   mutations: {
     SWITCH_TYPE: (state) => { state.type = !state.type; },
     SWITCH_GENDER: (state) => { state.gender = !state.gender; },
-    ADD_PART_TO_FAB(state, partname) {
+    SWITCH_READY: (state) => { state.ready = !state.ready; },
+    ADD_PART_TO_FAB: (state, partname) => {
       switch (partname) {
         case 'biohand': {
           state.biohands += 1;
@@ -71,7 +84,7 @@ export default {
         }
       }
     },
-    TAKE_PART_FROM_FAB(state, partname) {
+    TAKE_PART_FROM_FAB: (state, partname) => {
       switch (partname) {
         case 'biohand': {
           state.biohands -= 1;
@@ -90,6 +103,11 @@ export default {
         }
       }
     },
+    TAKE_ALL_PARTS: (state) => {
+      state.biohands = 0;
+      state.microchips = 0;
+      state.souls = 0;
+    },
   },
   actions: {
     getPart: {
@@ -104,6 +122,14 @@ export default {
       handler(namespacedContext, partname) {
         namespacedContext.commit(partname + '/ADD', null, { root: true });
         namespacedContext.commit('TAKE_PART_FROM_FAB', partname);
+      },
+    },
+    fabricateRobot: {
+      root: true,
+      handler(namespacedContext) {
+        namespacedContext.commit('SWITCH_READY');
+        namespacedContext.commit('TAKE_ALL_PARTS');
+        namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', 10);
       },
     },
   },

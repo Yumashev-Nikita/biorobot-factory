@@ -1,4 +1,7 @@
 <template>
+  <div class="robot-preview">
+    <div :class="robotPreviewComputed"></div>
+  </div>
   <div class="top-part-container">
     <div class="changers-container">
       <div class="changer">
@@ -48,7 +51,9 @@
   </div>
   <div class="bottom-part-container">
     <div class="button-wrapper">
-      <div class="button-main wd236 button-orange-wired button-text">Произвести за 10 монет
+      <div class="button-main wd236 button-text"
+      :class="fabButtonComputed" @click="status === 'available' ? fabricateRobot() : null">
+      Произвести за 10 монет
       </div>
     </div>
     <div class="func-text-wrapper">
@@ -71,14 +76,41 @@ export default {
     MicrochipPart,
     SoulPart,
   },
+  computed: {
+    fabButtonComputed() {
+      return {
+        'button-orange-wired': this.status === 'available',
+        'button-disable-wired': this.status === 'blocked',
+      };
+    },
+    robotPreviewComputed() {
+      return {
+        'female-design-available': !this.gender && !this.type && this.status === 'available',
+        'female-design-blocked': !this.gender && !this.type && this.status === 'blocked',
+        'female-design-ready': !this.gender && !this.type && this.status === 'ready',
+        'female-front-available': !this.gender && this.type && this.status === 'available',
+        'female-front-blocked': !this.gender && this.type && this.status === 'blocked',
+        'female-front-ready': !this.gender && this.type && this.status === 'ready',
+
+        'male-design-available': this.gender && !this.type && this.status === 'available',
+        'male-design-blocked': this.gender && !this.type && this.status === 'blocked',
+        'male-design-ready': this.gender && !this.type && this.status === 'ready',
+        'male-front-available': this.gender && this.type && this.status === 'available',
+        'male-front-blocked': this.gender && this.type && this.status === 'blocked',
+        'male-front-ready': this.gender && this.type && this.status === 'ready',
+      };
+    },
+  },
   setup() {
     const store = useStore();
     return {
       type: computed(() => store.getters['fabrication/getType']),
       gender: computed(() => store.getters['fabrication/getGender']),
+      status: computed(() => store.getters['fabrication/getStatus']),
       funcText: computed(() => store.getters['fabrication/getFuncText']),
       switchType: () => store.commit('fabrication/SWITCH_TYPE'),
       switchGender: () => store.commit('fabrication/SWITCH_GENDER'),
+      fabricateRobot: () => store.dispatch('fabricateRobot'),
     };
   },
 };
@@ -159,5 +191,12 @@ export default {
     max-width: 195px;
     max-height: 48px;
     margin-left: 25px;
+  }
+  .robot-preview {
+    position: absolute;
+    margin-left: 520px;
+    margin-top: 20px;
+    width: 236px;
+    height: 320px;
   }
 </style>
