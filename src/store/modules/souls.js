@@ -13,7 +13,6 @@ export default {
     getSellCost: (state) => state.sellcost,
     getSellState: (state) => state.amount === 0,
     getBuyState: (state, getters) => {
-      console.log(getters['wallet/getCoins']);
       let marketDisable = false;
       if (getters['wallet/getCoins'] < state.buycost) {
         marketDisable = true;

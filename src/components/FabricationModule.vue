@@ -144,19 +144,20 @@ export default {
     flex-direction: row;
   }
   .button-wrapper {
-    margin-left: -30px;
+    margin-left: -35px;
   }
   .bottom-part-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
+    height: 48px;
     margin-top: 40px;
   }
   .func-text-wrapper {
-    display: flex;
-    justify-content: center;
-    max-width: 205px;
-    margin-left: 30px;
+    display: inline-block;
+    max-width: 195px;
+    max-height: 48px;
+    margin-left: 25px;
   }
 </style>
