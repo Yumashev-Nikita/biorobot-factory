@@ -15,8 +15,12 @@
   background-repeat: no-repeat;
 }
 .robots {
+  position: absolute;
   width: 366px;
-  margin-left: 662px;
+  height: 320px;
+  margin-left: 650px;
+  margin-top: -20px;
+  background: url('@/assets/robots.svg');
   background-repeat: no-repeat;
 }
 

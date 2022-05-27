@@ -32,7 +32,7 @@ export default {
         if (microchipsAmount !== 4) {
           const mcrReq = 4 - microchipsAmount;
           if (!isFirst) finalText.push(', ');
-          finalText.push(mcrReq + ' микрочип' + (mcrReq === 2 ? 'a' : 'ов'));
+          finalText.push(mcrReq + ' микрочип' + (mcrReq === 2 || mcrReq === 1 ? 'a' : 'ов'));
         }
         if (soulsAmount !== 1) {
           const soulReq = 1 - soulsAmount;
