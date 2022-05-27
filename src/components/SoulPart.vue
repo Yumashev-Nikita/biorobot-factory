@@ -36,9 +36,9 @@ export default {
     },
     spriteComputed() {
       return {
-        'sprite-soul_active': this.isActive,
-        'sprite-soul_inactive': !this.isActive,
-        'sprite-soul_disable': this.isDisable && !this.isActive,
+        'soul-active': this.isActive,
+        'soul-inactive': !this.isActive,
+        'soul-disable': this.isDisable && !this.isActive,
       };
     },
   },

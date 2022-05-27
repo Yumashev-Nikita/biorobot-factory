@@ -36,9 +36,9 @@ export default {
     },
     spriteComputed() {
       return {
-        'sprite-biohand_active': this.isActive,
-        'sprite-biohand_inactive': !this.isActive,
-        'sprite-biohand_disable': this.isDisable && !this.isActive,
+        'biohand-active': this.isActive,
+        'biohand-inactive': !this.isActive,
+        'biohand-disable': this.isDisable && !this.isActive,
       };
     },
   },

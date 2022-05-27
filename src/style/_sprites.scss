@@ -1,110 +1,66 @@
+@mixin avg-sprite($name, $width, $height) {
+  .#{$name} {
+    width: #{$width};
+    height: #{$height};
+    background: url('@/assets/#{$name}.svg');
+    background-repeat: no-repeat;
+  }
+}
+
+@mixin fab-icon($name, $state, $width, $height) {
+  .#{$name}-#{$state} {
+    width: #{$width};
+    height: #{$height};
+    background: url('@/assets/fab_parts/#{$name}-#{$state}.svg');
+  }
+}
+
+@mixin fab-robot($gender, $type, $state) {
+  .#{$gender}-#{$type}-#{$state} {
+    width: 236px;
+    height: 320px;
+    background: url('@/assets/fab_robots/#{$gender}-#{$type}-#{$state}.svg');
+  }
+}
+
 /* App */
 
-.logo {
-  width: 78px;
-  height: 48px;
-  float: left;
-  background: url('@/assets/pacman-logo.svg');
-}
-.scroll-arrow {
-  width: 24px;
-  height: 24px;
-  margin-top: 13px;
-  margin-left: 6px;
-  background: url('@/assets/scroll-arrow.svg');
-  background-repeat: no-repeat;
-}
-.robots {
-  position: absolute;
-  width: 366px;
-  height: 320px;
-  margin-left: 650px;
-  margin-top: -20px;
-  background: url('@/assets/robots.png');
-  background-repeat: no-repeat;
-}
+@include avg-sprite('pacman-logo', 78px, 48px);
+@include avg-sprite('scroll-arrow', 24px, 24px);
+@include avg-sprite('robots', 366px, 320px);
 
 /* CryptoWallet */
 
-.coin {
-  width: 20px;
-  height: 20px;
-  background: url('@/assets/coin.svg');
-  background-repeat: no-repeat;
-}
-
-.checkmark {
-  width: 14px;
-  height: 12px;
-  background: url('@/assets/checkmark.svg');
-  background-repeat: no-repeat;
-}
+@include avg-sprite('coin', 20px, 20px);
+@include avg-sprite('checkmark', 14px, 12px);
 
 /* PartMarket */
 
-.biohand {
-  width: 101px;
-  height: 67px;
-  background: url('@/assets/biohand.svg');
-  background-repeat: no-repeat;
-}
-.microchip {
-  width: 80px;
-  height: 80px;
-  background: url('@/assets/microchip.svg');
-  background-repeat: no-repeat;
-}
-.soul {
-  width: 55.88px;
-  height: 54px;
-  background: url('@/assets/soul.svg');
-  background-repeat: no-repeat;
-}
+@include avg-sprite('biohand', 101px, 67px);
+@include avg-sprite('microchip', 80px, 80px);
+@include avg-sprite('soul', 55.88px, 54px);
 
 /* Fabrication */
 
-.sprite-biohand_active {
-  width: 36px;
-  height: 24px;
-  background: url('@/assets/fab_parts/fab_biohand_active.svg');
-}
-.sprite-microchip_active {
-  width: 24px;
-  height: 24px;
-  background: url('@/assets/fab_parts/fab_microchip_active.svg');
-}
-.sprite-soul_active {
-  width: 32px;
-  height: 32px;
-  background: url('@/assets/fab_parts/fab_soul_active.svg');
-}
-.sprite-biohand_inactive {
-  width: 36px;
-  height: 24px;
-  background: url('@/assets/fab_parts/fab_biohand_inactive.svg');
-}
-.sprite-microchip_inactive {
-  width: 24px;
-  height: 24px;
-  background: url('@/assets/fab_parts/fab_microchip_inactive.svg');
-}
-.sprite-soul_inactive {
-  width: 32px;
-  height: 32px;
-  background: url('@/assets/fab_parts/fab_soul_inactive.svg');
-}
-.sprite-biohand_disable {
-  width: 36px;
-  height: 24px;
-  background: url('@/assets/fab_parts/fab_biohand_disable.svg');
-}
-.sprite-microchip_disable {
-  width: 24px;
-  height: 24px;
-  background: url('@/assets/fab_parts/fab_microchip_disable.svg');
-}
-.sprite-soul_disable {
-  width: 32px;
-  height: 32px;
-  background: url('@/assets/fab_parts/fab_soul_disable.svg');
-}
+@include fab-icon('soul', 'active', 32px, 32px);
+@include fab-icon('soul', 'inactive', 32px, 32px);
+@include fab-icon('soul', 'disable', 32px, 32px);
+@include fab-icon('biohand', 'active', 36px, 24px);
+@include fab-icon('biohand', 'inactive', 36px, 24px);
+@include fab-icon('biohand', 'disable', 36px, 24px);
+@include fab-icon('microchip', 'active', 24px, 24px);
+@include fab-icon('microchip', 'inactive', 24px, 24px);
+@include fab-icon('microchip', 'disable', 24px, 24px);
+
+@include fab-robot('female', 'design', 'available');
+@include fab-robot('female', 'design', 'blocked');
+@include fab-robot('female', 'design', 'ready');
+@include fab-robot('female', 'front', 'available');
+@include fab-robot('female', 'front', 'blocked');
+@include fab-robot('female', 'front', 'ready');
+@include fab-robot('male', 'design', 'available');
+@include fab-robot('male', 'design', 'blocked');
+@include fab-robot('male', 'design', 'ready');
+@include fab-robot('male', 'front', 'available');
+@include fab-robot('male', 'front', 'blocked');
+@include fab-robot('male', 'front', 'ready');

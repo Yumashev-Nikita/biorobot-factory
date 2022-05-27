@@ -36,9 +36,9 @@ export default {
     },
     spriteComputed() {
       return {
-        'sprite-microchip_active': this.isActive,
-        'sprite-microchip_inactive': !this.isActive,
-        'sprite-microchip_disable': this.isDisable && !this.isActive,
+        'microchip-active': this.isActive,
+        'microchip-inactive': !this.isActive,
+        'microchip-disable': this.isDisable && !this.isActive,
       };
     },
   },

@@ -2,12 +2,12 @@
   <div class="app-container">
     <div class="main-container">
       <div class="top-bar">
-        <div class="logo"></div>
+        <div class="pacman-logo"></div>
         <div class="button-main wd236 button-orange-wired button-text"
       @click="sellSoul">Произвести биоробота</div>
       </div>
 
-      <div class="robots"></div>
+      <div class="robots-wrapper robots"></div>
 
       <div class="section">
         <div class="section__top-part">
@@ -17,7 +17,7 @@
         <div class="section__main-part">
           <div class="section__scroll">
             <div class="scroll">скролл</div>
-            <div class="scroll-arrow"></div>
+            <div class="scroll-arrow-wrapper scroll-arrow"></div>
           </div>
           <div class="section__undertitle undertitle">класса «монитор-кресло»</div>
         </div>
@@ -153,5 +153,14 @@ export default {
       margin-top: 24px;
       margin-left: 106px;
     }
+  }
+  .robots-wrapper {
+    position: absolute;
+    margin-left: 650px;
+    margin-top: -20px;
+  }
+  .scroll-arrow-wrapper {
+    margin-top: 13px;
+    margin-left: 6px;
   }
 </style>
