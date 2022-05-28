@@ -26,6 +26,8 @@
 /* App */
 
 @include avg-sprite('pacman-logo', 78px, 48px);
+@include avg-sprite('coin-modal', 43px, 52px);
+@include avg-sprite('cross-modal', 32px, 32px);
 @include avg-sprite('scroll-arrow', 24px, 24px);
 @include avg-sprite('robots', 366px, 320px);
 

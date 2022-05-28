@@ -36,6 +36,20 @@
   transform: rotate(-90deg);
 }
 
+.modal-main-text {
+  @extend %maintypo;
+  @extend %h2semibold32_40;
+  letter-spacing: 0.02em;
+  color: #212529;
+}
+
+.modal-secondary-text {
+  @extend %maintypo;
+  @extend %infotext20_32;
+  letter-spacing: 0.02em;
+  color: #4C5865;
+}
+
 /* CryptoWallet */
 
 .balance_text {

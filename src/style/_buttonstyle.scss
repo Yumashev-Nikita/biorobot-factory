@@ -5,6 +5,8 @@
   align-items: center;
   box-sizing: border-box;
   border-radius: 60px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .wd200 {
@@ -42,6 +44,7 @@
 
 .button-disable-filled {
   background: #4C5865;
+  cursor: default;
 }
 
 .button-blue {
@@ -61,4 +64,5 @@
 
 .button-disable-wired {
   border: 2px solid #4C5865;
+  cursor: default;
 }

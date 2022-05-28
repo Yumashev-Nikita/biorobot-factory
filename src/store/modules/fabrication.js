@@ -5,16 +5,20 @@ import WALLET from './wallet';
 export default {
   namespaced: true,
   state: {
-    type: true,
-    gender: true,
+    type: 'front',
+    gender: 'male',
     ready: false,
     biohands: 0,
     microchips: 0,
     souls: 0,
+    robotModal: false,
+    globalDeactivate: false,
   },
   getters: {
     getType: (state) => state.type,
     getGender: (state) => state.gender,
+    getRobotModalState: (state) => state.robotModal,
+    getGlobaDeactivate: (state) => state.globalDeactivate,
     getStatus: (state, getters) => {
       let status = '';
       if (state.ready) {
@@ -44,7 +48,7 @@ export default {
         if (microchipsAmount !== 4) {
           const mcrReq = 4 - microchipsAmount;
           if (!isFirst) finalText.push(', ');
-          finalText.push(mcrReq + ' микрочип' + (mcrReq === 2 || mcrReq === 1 ? 'a' : 'ов'));
+          finalText.push(mcrReq + ' микрочип' + (mcrReq === 1 ? 'a' : 'ов'));
         }
         if (soulsAmount !== 1) {
           const soulReq = 1 - soulsAmount;
@@ -62,9 +66,12 @@ export default {
     },
   },
   mutations: {
-    SWITCH_TYPE: (state) => { state.type = !state.type; },
-    SWITCH_GENDER: (state) => { state.gender = !state.gender; },
+    SWITCH_TYPE: (state, type) => { state.type = type; },
+    SWITCH_GENDER: (state, gender) => { state.gender = gender; },
     SWITCH_READY: (state) => { state.ready = !state.ready; },
+    SWITCH_ROBOT_MODAL: (state) => { state.robotModal = !state.robotModal; },
+    DISABLE_GLOBAL_DEACTIVATE: (state) => { console.log('dis'); state.globalDeactivate = false; },
+    ENABLE_GLOBAL_DEACTIVATE: (state) => { console.log('enb'); state.globalDeactivate = true; },
     ADD_PART_TO_FAB: (state, partname) => {
       switch (partname) {
         case 'biohand': {
@@ -130,6 +137,7 @@ export default {
         namespacedContext.commit('SWITCH_READY');
         namespacedContext.commit('TAKE_ALL_PARTS');
         namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', 10);
+        namespacedContext.commit('SWITCH_ROBOT_MODAL');
       },
     },
   },

@@ -19,8 +19,12 @@ export default {
     sellPart: {
       root: true,
       handler(namespacedContext, partname) {
-        namespacedContext.commit(partname + '/TAKE', null, { root: true });
-        namespacedContext.commit('wallet/ADD_COINS_AMOUNT', this.getters[partname + '/getSellCost'], { root: true });
+        if (this.getters[partname + '/getSellCost'] + this.getters['wallet/getCoins'] <= 100) {
+          namespacedContext.commit(partname + '/TAKE', null, { root: true });
+          namespacedContext.commit('wallet/ADD_COINS_AMOUNT', this.getters[partname + '/getSellCost'], { root: true });
+        } else {
+          namespacedContext.commit('wallet/SWITCH_COINS_MODAL', null, { root: true });
+        }
       },
     },
   },

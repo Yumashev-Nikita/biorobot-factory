@@ -1,4 +1,23 @@
 <template>
+  <div class="interlayer" v-if="modalCoinsOpened || modalRobotsOpened">
+    <div class="modal-window" v-if="modalCoinsOpened">
+      <div class="modal-window__coin-modal-wrapper coin-modal"></div>
+      <div class="modal-window__cross-modal-wrapper cross-modal" @click="switchCoinsModal"></div>
+      <div class="modal-window__content">
+        <div class="modal-main-text">Количество монет ограничено</div>
+        <div class="modal-secondary-text">Вы не можете нацыганить более 100 монет biorobo
+        </div>
+      </div>
+    </div>
+    <div class="modal-window" v-if="modalRobotsOpened">
+      <div class="modal-window__cross-modal-wrapper cross-modal"
+      @click="switchRobotsModal(); reloadPage()"></div>
+      <div class="modal-window__content">
+        <div class="modal-main-text">Биоробот произведён</div>
+        <div class="modal-secondary-text">Поздравляем!<br>Вы произвели биоробота</div>
+      </div>
+    </div>
+  </div>
   <div class="app-container">
     <div class="main-container">
       <div class="top-bar">
@@ -80,6 +99,8 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 import CryptoWallet from './components/CryptoWallet.vue';
 import PartMarket from './components/PartMarket.vue';
 import PartStorage from './components/PartStorage.vue';
@@ -93,12 +114,26 @@ export default {
     PartStorage,
     FabricationModule,
   },
+  methods: {
+    reloadPage() {
+      window.location.reload();
+    },
+  },
+  setup() {
+    const store = useStore();
+    return {
+      modalCoinsOpened: computed(() => store.getters['wallet/getCoinsModalState']),
+      modalRobotsOpened: computed(() => store.getters['fabrication/getRobotModalState']),
+      switchCoinsModal: () => store.commit('wallet/SWITCH_COINS_MODAL'),
+      switchRobotsModal: () => store.commit('fabrication/SWITCH_ROBOT_MODAL'),
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
-  @use './style/textstyles';
-  @use './style/sprites';
-  @use './style/buttonstyle';
+  @use '@/style/textstyles';
+  @use '@/style/sprites';
+  @use '@/style/buttonstyle';
   .app-container {
     position: absolute;
     top: 0;
@@ -133,6 +168,7 @@ export default {
       text-align: center;
       margin-top: 8px;
       padding-top: 4px;
+      user-select: none;
     }
     &__main-title {
       margin-left: 106px;
@@ -144,6 +180,7 @@ export default {
     &__scroll {
       width: 24px;
       height: 100px;
+      user-select: none;
     }
     &__component {
       margin-top: 60px;
@@ -162,5 +199,42 @@ export default {
   .scroll-arrow-wrapper {
     margin-top: 13px;
     margin-left: 6px;
+    user-select: none;
+  }
+  .interlayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a9f;
+    z-index: 100;
+  }
+  .modal-window {
+    z-index: 101;
+    width: 496px;
+    height: 240px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin: 20% auto;
+    &__content {
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      margin-left: 106px;
+      height: 235px;
+    }
+    &__coin-modal-wrapper {
+      position: absolute;
+      margin-top: 48px;
+      margin-left: 34px;
+    }
+    &__cross-modal-wrapper {
+      float: right;
+      margin-top: 8px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
   }
 </style>

@@ -3,10 +3,12 @@ export default {
   state: {
     coins: 45,
     stackedCoinFarm: false,
+    coinsModal: false,
   },
   getters: {
     getCoins: (state) => state.coins,
     getStackMode: (state) => state.stackedCoinFarm,
+    getCoinsModalState: (state) => state.coinsModal,
     getTextCased: (state) => {
       let textCased = 'монет';
       if (state.coins >= 11 && state.coins <= 19) {
@@ -23,17 +25,19 @@ export default {
   },
   mutations: {
     SWITCH_STACK_MODE: (state) => { state.stackedCoinFarm = !state.stackedCoinFarm; },
-    ADD_COINS_FIXED: (state) => { state.coins += state.stackedCoinFarm ? 5 : 1; },
+    ADD_COINS_FIXED: (state) => {
+      const sum = state.stackedCoinFarm ? 5 : 1;
+      if (state.coins + sum <= 100) {
+        state.coins += sum;
+      } else {
+        state.coinsModal = !state.coinsModal;
+      }
+    },
     ADD_COINS_AMOUNT: (state, amount) => { state.coins += amount; },
     TAKE_COINS_AMOUNT: (state, amount) => { state.coins -= amount; },
+    SWITCH_COINS_MODAL: (state) => { state.coinsModal = !state.coinsModal; },
   },
   actions: {
-    farmCoins() {
-      this.commit('wallet/ADD_COINS_FIXED');
-    },
-    switchStackMode() {
-      this.commit('wallet/SWITCH_STACK_MODE');
-    },
   },
   modules: {
   },

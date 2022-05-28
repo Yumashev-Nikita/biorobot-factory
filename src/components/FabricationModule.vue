@@ -1,18 +1,18 @@
 <template>
   <div class="robot-preview">
-    <div :class="robotPreviewComputed"></div>
+    <div :class="gender + '-' + type + '-' + status"></div>
   </div>
   <div class="top-part-container">
     <div class="changers-container">
       <div class="changer">
         <div class="changer__title changer__title-title">Тип биоробота:</div>
         <div class="changer__switches-container">
-          <div class="switch-wrapper">
-            <div :class='{ switch: type }'></div>
+          <div class="switch-wrapper" @click="switchType('front')">
+            <div :class="{ switch: type === 'front' }"></div>
           </div>
           <div class="changer__case changer__case-text">FrontEnd</div>
-          <div class="switch-wrapper">
-            <div :class='{ switch: !type }'></div>
+          <div class="switch-wrapper" @click="switchType('design')">
+            <div :class="{ switch: type === 'design' }"></div>
           </div>
           <div class="changer__case changer__case-text">Design</div>
         </div>
@@ -20,12 +20,12 @@
       <div class="changer">
         <div class="changer__title changer__title-title">Стабилизатор:</div>
         <div class="changer__switches-container">
-          <div class="switch-wrapper">
-            <div :class='{ switch: gender }'></div>
+          <div class="switch-wrapper" @click="switchGender('male')">
+            <div :class="{ switch: gender === 'male' }"></div>
           </div>
           <div class="changer__case changer__case-text">Male</div>
-          <div class="switch-wrapper" >
-            <div :class='{ switch: !gender }'></div>
+          <div class="switch-wrapper" @click="switchGender('female')">
+            <div :class="{ switch: gender === 'female' }"></div>
           </div>
           <div class="changer__case changer__case-text">Female</div>
         </div>
@@ -83,23 +83,6 @@ export default {
         'button-disable-wired': this.status === 'blocked',
       };
     },
-    robotPreviewComputed() {
-      return {
-        'female-design-available': !this.gender && !this.type && this.status === 'available',
-        'female-design-blocked': !this.gender && !this.type && this.status === 'blocked',
-        'female-design-ready': !this.gender && !this.type && this.status === 'ready',
-        'female-front-available': !this.gender && this.type && this.status === 'available',
-        'female-front-blocked': !this.gender && this.type && this.status === 'blocked',
-        'female-front-ready': !this.gender && this.type && this.status === 'ready',
-
-        'male-design-available': this.gender && !this.type && this.status === 'available',
-        'male-design-blocked': this.gender && !this.type && this.status === 'blocked',
-        'male-design-ready': this.gender && !this.type && this.status === 'ready',
-        'male-front-available': this.gender && this.type && this.status === 'available',
-        'male-front-blocked': this.gender && this.type && this.status === 'blocked',
-        'male-front-ready': this.gender && this.type && this.status === 'ready',
-      };
-    },
   },
   setup() {
     const store = useStore();
@@ -108,8 +91,8 @@ export default {
       gender: computed(() => store.getters['fabrication/getGender']),
       status: computed(() => store.getters['fabrication/getStatus']),
       funcText: computed(() => store.getters['fabrication/getFuncText']),
-      switchType: () => store.commit('fabrication/SWITCH_TYPE'),
-      switchGender: () => store.commit('fabrication/SWITCH_GENDER'),
+      switchType: (type) => store.commit('fabrication/SWITCH_TYPE', type),
+      switchGender: (gender) => store.commit('fabrication/SWITCH_GENDER', gender),
       fabricateRobot: () => store.dispatch('fabricateRobot'),
     };
   },
@@ -117,9 +100,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '../style/textstyles';
-  @use '../style/sprites';
-  @use '../style/buttonstyle';
+  @use '@/style/textstyles';
+  @use '@/style/sprites';
+  @use '@/style/buttonstyle';
   .changer{
     width: 270px;
     margin-top: 15px;
@@ -150,6 +133,7 @@ export default {
     border-radius: 100%;
     box-sizing: border-box;
     margin-left: 4px;
+    cursor: pointer;
   }
   .switch {
     width: 16px;

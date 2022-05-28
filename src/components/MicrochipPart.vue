@@ -1,10 +1,11 @@
 <template>
   <div v-if="isDisable" class="part" :class="partComputed"
-  @click="isActive ? (putPart(), switchActive()) : null">
+  @click="isActive ? (putPart(), switchActive()) : null"
+  :style="{ 'cursor': !isActive ? 'default' : null }">
     <div :class="spriteComputed"></div>
   </div>
   <div v-if="!isDisable" class="part" :class="partComputed"
-  @click="isActive ? putPart() : getPart();switchActive()">
+  @click="isActive ? putPart() : (getPart(), switchActive())">
     <div :class="spriteComputed"></div>
   </div>
 </template>
@@ -46,6 +47,7 @@ export default {
     const store = useStore();
     return {
       isDisable: computed(() => store.getters['microchip/getSellState']),
+      isGlobalDeactivate: computed(() => store.getters['fabrication/getGlobaDeactivate']),
       getPart: () => store.dispatch('getPart', 'microchip'),
       putPart: () => store.dispatch('putPart', 'microchip'),
     };
@@ -54,6 +56,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '../style/sprites';
-  @use '../style/partstyle';
+  @use '@/style/sprites';
+  @use '@/style/partstyle';
 </style>

@@ -81,9 +81,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '../style/textstyles';
-  @use '../style/sprites';
-  @use '../style/buttonstyle';
+  @use '@/style/textstyles';
+  @use '@/style/sprites';
+  @use '@/style/buttonstyle';
   .parts-container {
     display: flex;
     flex-direction: row;

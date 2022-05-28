@@ -26,16 +26,16 @@ export default {
       coins: computed(() => store.getters['wallet/getCoins']),
       stackMode: computed(() => store.getters['wallet/getStackMode']),
       textCased: computed(() => store.getters['wallet/getTextCased']),
-      farmCoins: () => store.dispatch('wallet/farmCoins'),
-      switchStackMode: () => store.dispatch('wallet/switchStackMode'),
+      farmCoins: () => store.commit('wallet/ADD_COINS_FIXED'),
+      switchStackMode: () => store.commit('wallet/SWITCH_STACK_MODE'),
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  @use '../style/textstyles';
-  @use '../style/sprites';
+  @use '@/style/textstyles';
+  @use '@/style/sprites';
   .coins {
     display: flex;
     &__coin {
