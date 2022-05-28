@@ -23,7 +23,7 @@
       <div class="top-bar">
         <div class="pacman-logo"></div>
         <div class="button-main wd236 button-orange-wired button-text"
-      @click="sellSoul">Произвести биоробота</div>
+      @click="goto('fabrication')">Произвести биоробота</div>
       </div>
 
       <div class="robots-wrapper robots"></div>
@@ -88,7 +88,7 @@
         </div>
         <div class="section__main-part">
           <div class="section__scroll"></div>
-          <div class="section__component">
+          <div class="section__component" ref='fabrication'>
             <FabricationModule/>
           </div>
         </div>
@@ -117,6 +117,15 @@ export default {
   methods: {
     reloadPage() {
       window.location.reload();
+    },
+    goto(refName) {
+      console.log('s');
+      const element = this.$refs[refName];
+      const top = element.offsetTop;
+      window.scrollTo({
+        top,
+        behavior: 'smooth',
+      });
     },
   },
   setup() {
