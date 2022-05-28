@@ -5,7 +5,7 @@
     <div :class="spriteComputed"></div>
   </div>
   <div v-if="!isDisable" class="part" :class="partComputed"
-  @click="isActive ? putPart() : (getPart(), switchActive())">
+  @click="isActive ? putPart() : getPart(); switchActive()">
     <div :class="spriteComputed"></div>
   </div>
 </template>
