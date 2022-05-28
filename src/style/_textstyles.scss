@@ -1,0 +1,124 @@
+@use './textpresets';
+
+/* App */
+
+.main-title {
+  @extend %maintypo;
+  @extend %h1semibold56_72;
+  letter-spacing: 0.015em;
+  color: #FFFFFF;
+}
+.undertitle {
+  @extend %maintypo;
+  @extend %h3semibold24_32;
+  letter-spacing: 0.022em;
+  color: #A3B8CC;
+}
+.number {
+  @extend %maintypo;
+  @extend %secondtext12_16;
+  color: #667380;
+}
+.section__title-title {
+  @extend %maintypo;
+  @extend %h2semibold32_40;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+.scroll {
+  @extend %maintypo;
+  @extend %secondtext12_16;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #667380;
+  transform: rotate(-90deg);
+}
+
+.modal-main-text {
+  @extend %maintypo;
+  @extend %h2semibold32_40;
+  letter-spacing: 0.02em;
+  color: #212529;
+}
+
+.modal-secondary-text {
+  @extend %maintypo;
+  @extend %infotext20_32;
+  letter-spacing: 0.02em;
+  color: #4C5865;
+}
+
+/* CryptoWallet */
+
+.balance_text {
+  @extend %maintypo;
+  @extend %h3semibold24_32;
+  letter-spacing: 0.01em;
+  color: #A3B8CC;
+}
+.make-money-button_text {
+  @extend %maintypo;
+  @extend %text16_24;
+  letter-spacing: 0.015em;
+  color: #FF7F22;
+  text-decoration: 1px underline #ff7e229d;
+  text-underline-position: under;
+}
+.condition_text {
+  @extend %maintypo;
+  @extend %text16_24;
+  color: #FFFFFF;
+}
+
+/* PartMarket and PartStorage */
+
+.cost {
+  @extend %maintypo;
+  @extend %text16_24;
+  text-align: center;
+  color: #A3B8CC;
+}
+.name {
+  @extend %maintypo;
+  @extend %infotext20_32;
+  text-align: center;
+  color: #FFFFFF;
+}
+.amount {
+  @extend %maintypo;
+  @extend %infotext20_32;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+/* Fabrication */
+
+.changer__title-title {
+  @extend %maintypo;
+  @extend %mediumtext14_20;
+  color: #FFFFFF;
+}
+
+.changer__case-text {
+  @extend %maintypo;
+  @extend %secondtext12_16;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.functional-text {
+  @extend %maintypo;
+  @extend %secondtext12_16;
+  color: #A3B8CC;
+}
+
+/* Buttons */
+
+.button-text {
+  @extend %maintypo;
+  @extend %text16_24;
+  letter-spacing: 0.012em;
+  color: #FFFFFF;
+}

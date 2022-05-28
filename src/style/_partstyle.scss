@@ -1,0 +1,18 @@
+.part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+.part-active {
+  border: 2px solid #FF7F22;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.part-inactive {
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #333940;
+}

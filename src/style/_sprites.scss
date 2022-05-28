@@ -1,0 +1,68 @@
+@mixin avg-sprite($name, $width, $height) {
+  .#{$name} {
+    width: #{$width};
+    height: #{$height};
+    background: url('@/assets/#{$name}.svg');
+    background-repeat: no-repeat;
+  }
+}
+
+@mixin fab-icon($name, $state, $width, $height) {
+  .#{$name}-#{$state} {
+    width: #{$width};
+    height: #{$height};
+    background: url('@/assets/fab_parts/#{$name}-#{$state}.svg');
+  }
+}
+
+@mixin fab-robot($gender, $type, $state) {
+  .#{$gender}-#{$type}-#{$state} {
+    width: 236px;
+    height: 320px;
+    background: url('@/assets/fab_robots/#{$gender}-#{$type}-#{$state}.svg');
+  }
+}
+
+/* App */
+
+@include avg-sprite('pacman-logo', 78px, 48px);
+@include avg-sprite('coin-modal', 43px, 52px);
+@include avg-sprite('cross-modal', 32px, 32px);
+@include avg-sprite('scroll-arrow', 24px, 24px);
+@include avg-sprite('robots', 366px, 320px);
+
+/* CryptoWallet */
+
+@include avg-sprite('coin', 20px, 20px);
+@include avg-sprite('checkmark', 14px, 12px);
+
+/* PartMarket */
+
+@include avg-sprite('biohand', 101px, 67px);
+@include avg-sprite('microchip', 80px, 80px);
+@include avg-sprite('soul', 55.88px, 54px);
+
+/* Fabrication */
+
+@include fab-icon('soul', 'active', 32px, 32px);
+@include fab-icon('soul', 'inactive', 32px, 32px);
+@include fab-icon('soul', 'disable', 32px, 32px);
+@include fab-icon('biohand', 'active', 36px, 24px);
+@include fab-icon('biohand', 'inactive', 36px, 24px);
+@include fab-icon('biohand', 'disable', 36px, 24px);
+@include fab-icon('microchip', 'active', 24px, 24px);
+@include fab-icon('microchip', 'inactive', 24px, 24px);
+@include fab-icon('microchip', 'disable', 24px, 24px);
+
+@include fab-robot('female', 'design', 'available');
+@include fab-robot('female', 'design', 'blocked');
+@include fab-robot('female', 'design', 'ready');
+@include fab-robot('female', 'front', 'available');
+@include fab-robot('female', 'front', 'blocked');
+@include fab-robot('female', 'front', 'ready');
+@include fab-robot('male', 'design', 'available');
+@include fab-robot('male', 'design', 'blocked');
+@include fab-robot('male', 'design', 'ready');
+@include fab-robot('male', 'front', 'available');
+@include fab-robot('male', 'front', 'blocked');
+@include fab-robot('male', 'front', 'ready');
