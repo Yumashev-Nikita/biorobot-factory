@@ -1,4 +1,5 @@
 <template>
+
   <div class="interlayer" v-if="modalCoinsOpened || modalRobotsOpened">
     <div class="modal-window" v-if="modalCoinsOpened">
       <div class="modal-window__coin-modal-wrapper coin-modal"></div>
@@ -18,6 +19,7 @@
       </div>
     </div>
   </div>
+
   <div class="app-container">
     <div class="main-container">
       <div class="top-bar">
@@ -47,11 +49,8 @@
           <div class="section__number number">02</div>
           <div class="section__title section__title-title">Кошелёк криптовалют</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component">
-            <CryptoWallet/>
-          </div>
+        <div class="section__component">
+          <CryptoWallet/>
         </div>
       </div>
 
@@ -60,11 +59,8 @@
           <div class="section__number number">03</div>
           <div class="section__title section__title-title">Рынок комплектующих</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component">
-            <PartMarket/>
-          </div>
+        <div class="section__component">
+          <PartMarket/>
         </div>
       </div>
 
@@ -73,11 +69,8 @@
           <div class="section__number number">04</div>
           <div class="section__title section__title-title">Склад</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component">
-            <PartStorage/>
-          </div>
+        <div class="section__component">
+          <PartStorage/>
         </div>
       </div>
 
@@ -86,11 +79,8 @@
           <div class="section__number number">05</div>
           <div class="section__title section__title-title">Производство</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component" ref='fabrication'>
-            <FabricationModule/>
-          </div>
+        <div class="section__component" ref='fabrication'>
+          <FabricationModule/>
         </div>
       </div>
 
@@ -143,6 +133,8 @@ export default {
   @use '@/style/textstyles';
   @use '@/style/sprites';
   @use '@/style/buttonstyle';
+  @use '@/style/universalextenders';
+  @import '@/style/universalmixins';
   .app-container {
     position: absolute;
     top: 0;
@@ -155,21 +147,30 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 120px;
+    @include mobile {
+      justify-content: center;
+      margin-bottom: 60px;
+    }
   }
   .main-container {
-    margin: 48px auto;
-    width: 1016px;
+    margin: auto;
+    margin-top: 48px ;
+    width: 53.4%;
+    min-width: 236px;
   }
   .section {
-    display: flex;
-    flex-direction: column;
-    width: 1016px;
+    width: 100%;
+    margin-bottom: 100px;
     &__top-part {
       display: flex;
+      margin-left: 7px;
+      @include mobile {
+        margin: auto;
+      }
     }
     &__main-part {
-      margin-bottom: 80px;
       display: flex;
+      margin-bottom: -16px;
     }
     &__number {
       width: 24px;
@@ -178,32 +179,53 @@ export default {
       margin-top: 8px;
       padding-top: 4px;
       user-select: none;
-    }
-    &__main-title {
-      margin-left: 106px;
-      width: 470px;
-    }
-    &__title {
-      margin-left: 106px;
+      margin-left: -2px;
+      @extend %non-desktop-hider
     }
     &__scroll {
       width: 24px;
       height: 100px;
       user-select: none;
+      @extend %non-desktop-hider
+    }
+    &__main-title {
+      width: 45%;
+      @extend %mobile-margin;
+      @include mobile {
+        width: 236px;
+      }
+      @include desktop {
+        margin-left: 106px;
+      }
+    }
+    &__title {
+      @extend %mobile-margin;
+      @include desktop {
+        margin-left: 106px;
+      }
     }
     &__component {
-      margin-top: 60px;
-      margin-left: 106px;
+      width: 100%;
+      @extend %mobile-margin;
     }
     &__undertitle {
       margin-top: 24px;
-      margin-left: 106px;
+      @extend %mobile-hider;
+      @include desktop {
+        margin-left: 106px;
+      }
     }
   }
   .robots-wrapper {
     position: absolute;
-    margin-left: 650px;
+    right: 0;
+    margin-right: 23.5%;
     margin-top: -20px;
+    @include mobile {
+      position: relative;
+      margin: auto;
+      margin-bottom: 30px;
+    }
   }
   .scroll-arrow-wrapper {
     margin-top: 13px;

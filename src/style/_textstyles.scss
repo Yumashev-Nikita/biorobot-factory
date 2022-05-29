@@ -1,33 +1,40 @@
 @use './textpresets';
+@use './universalextenders';
 
 /* App */
 
 .main-title {
   @extend %maintypo;
-  @extend %h1semibold56_72;
+  @extend %h1semibold;
+  @extend %mobile-text-center;
   letter-spacing: 0.015em;
   color: #FFFFFF;
 }
+
 .undertitle {
   @extend %maintypo;
-  @extend %h3semibold24_32;
+  @extend %h3semibold;
   letter-spacing: 0.022em;
   color: #A3B8CC;
 }
+
 .number {
   @extend %maintypo;
-  @extend %secondtext12_16;
+  @extend %secondtext;
   color: #667380;
 }
+
 .section__title-title {
   @extend %maintypo;
-  @extend %h2semibold32_40;
-  letter-spacing: 0.02em;
+  @extend %h2semibold;
+  @extend %mobile-text-center;
+  letter-spacing: 0.025em;
   color: #FFFFFF;
 }
+
 .scroll {
   @extend %maintypo;
-  @extend %secondtext12_16;
+  @extend %secondtext;
   display: flex;
   align-items: center;
   letter-spacing: 0.1em;
@@ -38,14 +45,14 @@
 
 .modal-main-text {
   @extend %maintypo;
-  @extend %h2semibold32_40;
+  @extend %h2semibold;
   letter-spacing: 0.02em;
   color: #212529;
 }
 
 .modal-secondary-text {
   @extend %maintypo;
-  @extend %infotext20_32;
+  @extend %infotext;
   letter-spacing: 0.02em;
   color: #4C5865;
 }
@@ -54,21 +61,23 @@
 
 .balance_text {
   @extend %maintypo;
-  @extend %h3semibold24_32;
+  @extend %h3semibold;
   letter-spacing: 0.01em;
   color: #A3B8CC;
 }
+
 .make-money-button_text {
   @extend %maintypo;
-  @extend %text16_24;
+  @extend %text;
   letter-spacing: 0.015em;
   color: #FF7F22;
   text-decoration: 1px underline #ff7e229d;
   text-underline-position: under;
 }
+
 .condition_text {
   @extend %maintypo;
-  @extend %text16_24;
+  @extend %text;
   color: #FFFFFF;
 }
 
@@ -76,19 +85,21 @@
 
 .cost {
   @extend %maintypo;
-  @extend %text16_24;
+  @extend %text;
   text-align: center;
   color: #A3B8CC;
 }
+
 .name {
   @extend %maintypo;
-  @extend %infotext20_32;
+  @extend %infotext;
   text-align: center;
   color: #FFFFFF;
 }
+
 .amount {
   @extend %maintypo;
-  @extend %infotext20_32;
+  @extend %infotext;
   text-align: center;
   color: #FFFFFF;
 }
@@ -97,20 +108,20 @@
 
 .changer__title-title {
   @extend %maintypo;
-  @extend %mediumtext14_20;
+  @extend %mediumtext;
   color: #FFFFFF;
 }
 
 .changer__case-text {
   @extend %maintypo;
-  @extend %secondtext12_16;
+  @extend %secondtext;
   text-align: center;
   color: #FFFFFF;
 }
 
 .functional-text {
   @extend %maintypo;
-  @extend %secondtext12_16;
+  @extend %secondtext;
   color: #A3B8CC;
 }
 
@@ -118,7 +129,7 @@
 
 .button-text {
   @extend %maintypo;
-  @extend %text16_24;
+  @extend %text;
   letter-spacing: 0.012em;
   color: #FFFFFF;
 }
