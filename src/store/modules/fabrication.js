@@ -11,7 +11,7 @@ export default {
     biohands: 0,
     microchips: 0,
     souls: 0,
-    robotModal: true,
+    robotModal: false,
     globalDeactivate: false,
   },
   getters: {
