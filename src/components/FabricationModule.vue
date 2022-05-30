@@ -1,69 +1,71 @@
 <template>
   <div class="fabrictaion-container">
+    <div class="fab-blocks-container">
+      <div class="fab-block-wrapper">
+        <div class="changers-container">
+          <div class="changer">
+            <div class="changer__title changer__title-title">Тип биоробота:</div>
+              <div class="changer__switches-container">
+              <div class="switch-wrapper" @click="switchType('front')">
+                <div :class="{ switch: type === 'front' }"></div>
+              </div>
+              <div class="changer__case changer__case-text">FrontEnd</div>
+              <div class="switch-wrapper" @click="switchType('design')">
+                <div :class="{ switch: type === 'design' }"></div>
+              </div>
+              <div class="changer__case changer__case-text">Design</div>
+            </div>
+          </div>
+          <div class="changer">
+            <div class="changer__title changer__title-title">Стабилизатор:</div>
+            <div class="changer__switches-container">
+              <div class="switch-wrapper" @click="switchGender('male')">
+                <div :class="{ switch: gender === 'male' }"></div>
+              </div>
+              <div class="changer__case changer__case-text">Male</div>
+              <div class="switch-wrapper" @click="switchGender('female')">
+                <div :class="{ switch: gender === 'female' }"></div>
+              </div>
+              <div class="changer__case changer__case-text">Female</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fab-block-wrapper">
+        <div class="required-parts">
+          <div class="required-parts__parts-container">
+            <div class="required-parts__part-wrapper"><BiohandPart/></div>
+            <div class="required-parts__part-wrapper"><BiohandPart/></div>
+            <div class="required-parts__part-wrapper"><BiohandPart/></div>
+            <div class="required-parts__part-wrapper"><BiohandPart/></div>
+          </div>
+          <div class="required-parts__parts-container">
+            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+          </div>
+          <div class="required-parts__parts-container">
+            <div class="required-parts__part-wrapper"><SoulPart/></div>
+          </div>
+        </div>
+      </div>
+      <div class="fab-block-wrapper">
+        <div class="button-wrapper">
+          <div class="button-main wd236 button-text"
+          :class="fabButtonComputed" @click="status === 'available' ? fabricateRobot() : null">
+          Произвести за 10 монет
+          </div>
+        </div>
+      </div>
+      <div class="fab-block-wrapper">
+        <div class="func-text-wrapper">
+          <div class="functional-text">{{ funcText }}</div>
+        </div>
+      </div>
+    </div>
     <div class="robot-preview">
       <div :class="gender + '-' + type + '-' + status"></div>
-    </div>
-    <div class="fab-block-wrapper">
-      <div class="changers-container">
-        <div class="changer">
-          <div class="changer__title changer__title-title">Тип биоробота:</div>
-            <div class="changer__switches-container">
-            <div class="switch-wrapper" @click="switchType('front')">
-              <div :class="{ switch: type === 'front' }"></div>
-            </div>
-            <div class="changer__case changer__case-text">FrontEnd</div>
-            <div class="switch-wrapper" @click="switchType('design')">
-              <div :class="{ switch: type === 'design' }"></div>
-            </div>
-            <div class="changer__case changer__case-text">Design</div>
-          </div>
-        </div>
-        <div class="changer">
-          <div class="changer__title changer__title-title">Стабилизатор:</div>
-          <div class="changer__switches-container">
-            <div class="switch-wrapper" @click="switchGender('male')">
-              <div :class="{ switch: gender === 'male' }"></div>
-            </div>
-            <div class="changer__case changer__case-text">Male</div>
-            <div class="switch-wrapper" @click="switchGender('female')">
-              <div :class="{ switch: gender === 'female' }"></div>
-            </div>
-            <div class="changer__case changer__case-text">Female</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="fab-block-wrapper">
-      <div class="required-parts">
-        <div class="required-parts__parts-container">
-          <div class="required-parts__part-wrapper"><BiohandPart/></div>
-          <div class="required-parts__part-wrapper"><BiohandPart/></div>
-          <div class="required-parts__part-wrapper"><BiohandPart/></div>
-          <div class="required-parts__part-wrapper"><BiohandPart/></div>
-        </div>
-        <div class="required-parts__parts-container">
-          <div class="required-parts__part-wrapper"><MicrochipPart/></div>
-          <div class="required-parts__part-wrapper"><MicrochipPart/></div>
-          <div class="required-parts__part-wrapper"><MicrochipPart/></div>
-          <div class="required-parts__part-wrapper"><MicrochipPart/></div>
-        </div>
-        <div class="required-parts__parts-container">
-          <div class="required-parts__part-wrapper"><SoulPart/></div>
-        </div>
-      </div>
-    </div>
-    <div class="fab-block-wrapper">
-      <div class="button-wrapper">
-        <div class="button-main wd236 button-text"
-        :class="fabButtonComputed" @click="status === 'available' ? fabricateRobot() : null">
-        Произвести за 10 монет
-        </div>
-      </div>
-    </div>
-    <div class="fab-block-wrapper">
-      <div class="func-text-wrapper">
-        <div class="functional-text">{{ funcText }}</div>
-      </div>
     </div>
   </div>
 </template>
@@ -112,23 +114,32 @@ export default {
   @import '@/style/universalmixins';
   .fabrictaion-container {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
     margin-top: 45px;
-    width: 60%;
-    @include non-desktop {
+    @include mobile {
       margin: auto;
+      flex-direction: column-reverse;
+    }
+    @include non-desktop {
       margin-top: 45px;
-      width: 100%;
     }
     @include desktop {
       margin-left: 135px;
     }
   }
+  .fab-blocks-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 520px;
+  }
   .fab-block-wrapper {
     display: flex;
     margin-right: 24px;
     width: 236px;
+    @include mobile {
+      margin: auto;
+    }
   }
   .changer{
     &__title {
@@ -192,13 +203,18 @@ export default {
   .robot-preview {
     width: 236px;
     height: 320px;
+    @extend %mobile-margin;
     @include tablet-horizontal-width {
       position: absolute;
-      right: 30.1%;
-    }
-    @include desktop {
-      position: absolute;
-      right: 30.1%;
+       @media only screen and (min-width: 1020px) and (max-width: 1320px) {
+        right: 10%;
+      }
+      @media only screen and (min-width: 1321px) and (max-width: 1400px) {
+        right: 20%;
+      }
+      @media only screen and (min-width: 1401px) {
+        right: 25%;
+      }
     }
   }
 </style>

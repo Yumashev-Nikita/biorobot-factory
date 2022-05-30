@@ -163,9 +163,11 @@ export default {
     margin-bottom: 100px;
     &__top-part {
       display: flex;
-      margin-left: 7px;
       @include mobile {
         margin: auto;
+      }
+      @include desktop {
+        margin-left: 7px;
       }
     }
     &__main-part {
