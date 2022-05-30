@@ -1,5 +1,6 @@
 @use './textpresets';
 @use './universalextenders';
+@import '@/style/universalmixins';
 
 /* App */
 
@@ -41,20 +42,6 @@
   text-transform: uppercase;
   color: #667380;
   transform: rotate(-90deg);
-}
-
-.modal-main-text {
-  @extend %maintypo;
-  @extend %h2semibold;
-  letter-spacing: 0.02em;
-  color: #212529;
-}
-
-.modal-secondary-text {
-  @extend %maintypo;
-  @extend %infotext;
-  letter-spacing: 0.02em;
-  color: #4C5865;
 }
 
 /* CryptoWallet */
@@ -123,6 +110,34 @@
   @extend %maintypo;
   @extend %secondtext;
   color: #A3B8CC;
+}
+
+/* ModalWindow */
+
+.modal-main-text {
+  @extend %maintypo;
+  @extend %h2semibold;
+  @include mobile {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+  letter-spacing: 0.02em;
+  color: #212529;
+}
+
+.modal-secondary-text {
+  @extend %maintypo;
+  @extend %infotext;
+  @include mobile {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
+  letter-spacing: 0.02em;
+  color: #4C5865;
 }
 
 /* Buttons */

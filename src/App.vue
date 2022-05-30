@@ -1,25 +1,5 @@
 <template>
-
-  <div class="interlayer" v-if="modalCoinsOpened || modalRobotsOpened">
-    <div class="modal-window" v-if="modalCoinsOpened">
-      <div class="modal-window__coin-modal-wrapper coin-modal"></div>
-      <div class="modal-window__cross-modal-wrapper cross-modal" @click="switchCoinsModal"></div>
-      <div class="modal-window__content">
-        <div class="modal-main-text">Количество монет ограничено</div>
-        <div class="modal-secondary-text">Вы не можете нацыганить более 100 монет biorobo
-        </div>
-      </div>
-    </div>
-    <div class="modal-window" v-if="modalRobotsOpened">
-      <div class="modal-window__cross-modal-wrapper cross-modal"
-      @click="switchRobotsModal(); reloadPage()"></div>
-      <div class="modal-window__content">
-        <div class="modal-main-text">Биоробот произведён</div>
-        <div class="modal-secondary-text">Поздравляем!<br>Вы произвели биоробота</div>
-      </div>
-    </div>
-  </div>
-
+  <ModalWindow/>
   <div class="app-container">
     <div class="main-container">
       <div class="top-bar">
@@ -89,8 +69,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import ModalWindow from './components/ModalWindow.vue';
 import CryptoWallet from './components/CryptoWallet.vue';
 import PartMarket from './components/PartMarket.vue';
 import PartStorage from './components/PartStorage.vue';
@@ -99,15 +78,13 @@ import FabricationModule from './components/FabricationModule.vue';
 export default {
   name: 'app',
   components: {
+    ModalWindow,
     CryptoWallet,
     PartMarket,
     PartStorage,
     FabricationModule,
   },
   methods: {
-    reloadPage() {
-      window.location.reload();
-    },
     goto(refName) {
       console.log('s');
       const element = this.$refs[refName];
@@ -117,15 +94,6 @@ export default {
         behavior: 'smooth',
       });
     },
-  },
-  setup() {
-    const store = useStore();
-    return {
-      modalCoinsOpened: computed(() => store.getters['wallet/getCoinsModalState']),
-      modalRobotsOpened: computed(() => store.getters['fabrication/getRobotModalState']),
-      switchCoinsModal: () => store.commit('wallet/SWITCH_COINS_MODAL'),
-      switchRobotsModal: () => store.commit('fabrication/SWITCH_ROBOT_MODAL'),
-    };
   },
 };
 </script>
@@ -249,41 +217,5 @@ export default {
     margin-top: 13px;
     margin-left: 6px;
     user-select: none;
-  }
-  .interlayer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1a1a1a9f;
-    z-index: 100;
-  }
-  .modal-window {
-    z-index: 101;
-    width: 496px;
-    height: 240px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin: 20% auto;
-    &__content {
-      width: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      margin-left: 106px;
-      height: 235px;
-    }
-    &__coin-modal-wrapper {
-      position: absolute;
-      margin-top: 48px;
-      margin-left: 34px;
-    }
-    &__cross-modal-wrapper {
-      float: right;
-      margin-top: 8px;
-      margin-right: 8px;
-      cursor: pointer;
-    }
   }
 </style>
