@@ -228,6 +228,22 @@ export default {
       margin: auto;
       margin-bottom: 30px;
     }
+    @include tablet-vertical-width {
+      position: absolute;
+      right: -9%;
+    }
+    @include tablet-horizontal-width {
+      position: absolute;
+       @media only screen and (min-width: 1020px) and (max-width: 1320px) {
+        right: -5%;
+      }
+      @media only screen and (min-width: 1321px) and (max-width: 1400px) {
+        right: 4%;
+      }
+      @media only screen and (min-width: 1401px) {
+        right: 3%;
+      }
+    }
   }
   .scroll-arrow-wrapper {
     margin-top: 13px;
