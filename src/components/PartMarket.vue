@@ -81,52 +81,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '@/style/textstyles';
-  @use '@/style/sprites';
-  @use '@/style/buttonstyle';
-  .parts-container {
-    display: flex;
-    flex-direction: row;
-  }
-  .part {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 236px;
-    margin-right: 25px;
-    &__thumbnail {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 85px;
-      margin: 21px auto;
-    }
-    &__name {
-      margin-top: 25px;
-      margin-bottom: 5px;
-    }
-    &__cost {
-      margin-bottom: 24px;
-    }
-    &__button-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-  }
-  .soul-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 88px;
-    height: 88px;
-    border-radius: 100%;
-    border: 3px solid #FF7F22;
-    box-sizing: border-box;
-    margin: 0px auto;
-    padding-top: 7px;
-  }
-  .shadow-filter {
-    filter: drop-shadow(0px 8px 40px #FF7F22);
-  }
+  @use '@/style/partshopfront';
 </style>

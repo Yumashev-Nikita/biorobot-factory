@@ -1,0 +1,25 @@
+%non-desktop-hider {
+  @media only screen and (min-width: 320px) and (max-width: 1919px) {
+    position: absolute;
+    visibility: collapse;
+  }
+}
+
+%mobile-text-center {
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    text-align: center;
+  }
+}
+
+%mobile-margin {
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    margin: auto;
+  }
+}
+
+%mobile-hider {
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    position: absolute;
+    visibility: collapse;
+  }
+}

@@ -1,23 +1,5 @@
 <template>
-  <div class="interlayer" v-if="modalCoinsOpened || modalRobotsOpened">
-    <div class="modal-window" v-if="modalCoinsOpened">
-      <div class="modal-window__coin-modal-wrapper coin-modal"></div>
-      <div class="modal-window__cross-modal-wrapper cross-modal" @click="switchCoinsModal"></div>
-      <div class="modal-window__content">
-        <div class="modal-main-text">Количество монет ограничено</div>
-        <div class="modal-secondary-text">Вы не можете нацыганить более 100 монет biorobo
-        </div>
-      </div>
-    </div>
-    <div class="modal-window" v-if="modalRobotsOpened">
-      <div class="modal-window__cross-modal-wrapper cross-modal"
-      @click="switchRobotsModal(); reloadPage()"></div>
-      <div class="modal-window__content">
-        <div class="modal-main-text">Биоробот произведён</div>
-        <div class="modal-secondary-text">Поздравляем!<br>Вы произвели биоробота</div>
-      </div>
-    </div>
-  </div>
+  <ModalWindow/>
   <div class="app-container">
     <div class="main-container">
       <div class="top-bar">
@@ -47,11 +29,8 @@
           <div class="section__number number">02</div>
           <div class="section__title section__title-title">Кошелёк криптовалют</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component">
-            <CryptoWallet/>
-          </div>
+        <div class="section__component">
+          <CryptoWallet/>
         </div>
       </div>
 
@@ -60,11 +39,8 @@
           <div class="section__number number">03</div>
           <div class="section__title section__title-title">Рынок комплектующих</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component">
-            <PartMarket/>
-          </div>
+        <div class="section__component">
+          <PartMarket/>
         </div>
       </div>
 
@@ -73,11 +49,8 @@
           <div class="section__number number">04</div>
           <div class="section__title section__title-title">Склад</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component">
-            <PartStorage/>
-          </div>
+        <div class="section__component">
+          <PartStorage/>
         </div>
       </div>
 
@@ -86,11 +59,8 @@
           <div class="section__number number">05</div>
           <div class="section__title section__title-title">Производство</div>
         </div>
-        <div class="section__main-part">
-          <div class="section__scroll"></div>
-          <div class="section__component" ref='fabrication'>
-            <FabricationModule/>
-          </div>
+        <div class="section__component" ref='fabrication'>
+          <FabricationModule/>
         </div>
       </div>
 
@@ -99,8 +69,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import ModalWindow from './components/ModalWindow.vue';
 import CryptoWallet from './components/CryptoWallet.vue';
 import PartMarket from './components/PartMarket.vue';
 import PartStorage from './components/PartStorage.vue';
@@ -109,15 +78,13 @@ import FabricationModule from './components/FabricationModule.vue';
 export default {
   name: 'app',
   components: {
+    ModalWindow,
     CryptoWallet,
     PartMarket,
     PartStorage,
     FabricationModule,
   },
   methods: {
-    reloadPage() {
-      window.location.reload();
-    },
     goto(refName) {
       console.log('s');
       const element = this.$refs[refName];
@@ -128,21 +95,14 @@ export default {
       });
     },
   },
-  setup() {
-    const store = useStore();
-    return {
-      modalCoinsOpened: computed(() => store.getters['wallet/getCoinsModalState']),
-      modalRobotsOpened: computed(() => store.getters['fabrication/getRobotModalState']),
-      switchCoinsModal: () => store.commit('wallet/SWITCH_COINS_MODAL'),
-      switchRobotsModal: () => store.commit('fabrication/SWITCH_ROBOT_MODAL'),
-    };
-  },
 };
 </script>
 <style lang="scss" scoped>
   @use '@/style/textstyles';
   @use '@/style/sprites';
   @use '@/style/buttonstyle';
+  @use '@/style/universalextenders';
+  @import '@/style/universalmixins';
   .app-container {
     position: absolute;
     top: 0;
@@ -155,21 +115,32 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 120px;
+    @include mobile {
+      justify-content: center;
+      margin-bottom: 60px;
+    }
   }
   .main-container {
-    margin: 48px auto;
-    width: 1016px;
+    margin: auto;
+    margin-top: 48px ;
+    width: 53.4%;
+    min-width: 236px;
   }
   .section {
-    display: flex;
-    flex-direction: column;
-    width: 1016px;
+    width: 100%;
+    margin-bottom: 100px;
     &__top-part {
       display: flex;
+      @include mobile {
+        margin: auto;
+      }
+      @include desktop {
+        margin-left: 7px;
+      }
     }
     &__main-part {
-      margin-bottom: 80px;
       display: flex;
+      margin-bottom: -16px;
     }
     &__number {
       width: 24px;
@@ -178,72 +149,73 @@ export default {
       margin-top: 8px;
       padding-top: 4px;
       user-select: none;
-    }
-    &__main-title {
-      margin-left: 106px;
-      width: 470px;
-    }
-    &__title {
-      margin-left: 106px;
+      margin-left: -2px;
+      @extend %non-desktop-hider
     }
     &__scroll {
       width: 24px;
       height: 100px;
       user-select: none;
+      @extend %non-desktop-hider
+    }
+    &__main-title {
+      width: 45%;
+      @extend %mobile-margin;
+      @include mobile {
+        width: 236px;
+      }
+      @include desktop {
+        margin-left: 106px;
+      }
+    }
+    &__title {
+      @extend %mobile-margin;
+      @include desktop {
+        margin-left: 106px;
+      }
     }
     &__component {
-      margin-top: 60px;
-      margin-left: 106px;
+      width: 100%;
+      @extend %mobile-margin;
     }
     &__undertitle {
       margin-top: 24px;
-      margin-left: 106px;
+      @extend %mobile-hider;
+      @include desktop {
+        margin-left: 106px;
+      }
     }
   }
   .robots-wrapper {
     position: absolute;
-    margin-left: 650px;
+    right: 0;
+    margin-right: 23.5%;
     margin-top: -20px;
+    @include mobile {
+      position: relative;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+    @include tablet-vertical-width {
+      position: absolute;
+      right: -9%;
+    }
+    @include tablet-horizontal-width {
+      position: absolute;
+       @media only screen and (min-width: 1020px) and (max-width: 1320px) {
+        right: -5%;
+      }
+      @media only screen and (min-width: 1321px) and (max-width: 1400px) {
+        right: 4%;
+      }
+      @media only screen and (min-width: 1401px) {
+        right: 3%;
+      }
+    }
   }
   .scroll-arrow-wrapper {
     margin-top: 13px;
     margin-left: 6px;
     user-select: none;
-  }
-  .interlayer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1a1a1a9f;
-    z-index: 100;
-  }
-  .modal-window {
-    z-index: 101;
-    width: 496px;
-    height: 240px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    margin: 20% auto;
-    &__content {
-      width: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      margin-left: 106px;
-      height: 235px;
-    }
-    &__coin-modal-wrapper {
-      position: absolute;
-      margin-top: 48px;
-      margin-left: 34px;
-    }
-    &__cross-modal-wrapper {
-      float: right;
-      margin-top: 8px;
-      margin-right: 8px;
-      cursor: pointer;
-    }
   }
 </style>
