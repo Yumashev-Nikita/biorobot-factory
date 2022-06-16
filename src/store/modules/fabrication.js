@@ -1,5 +1,5 @@
 import WALLET from './wallet';
-
+/* eslint-disable prefer-const */
 export default {
   namespaced: true,
   state: {
@@ -38,7 +38,7 @@ export default {
       const microchipsAmount = state.microchips;
       const soulsAmount = state.souls;
       const balance = getters['wallet/getCoins'];
-      const finalText = ['Для производства биоробота не хватает '];
+      let finalText = ['Для производства биоробота не хватает '];
       if (biohandsAmount === state.biohands_nd && microchipsAmount === state.microchips_nd
           && soulsAmount === state.souls_nd && balance >= state.coins_nd) {
         finalText[0] = 'Для производства биоробота всего хватает';
