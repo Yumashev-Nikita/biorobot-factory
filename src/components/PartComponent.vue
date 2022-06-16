@@ -29,6 +29,21 @@ export default {
       this.isActive = !this.isActive;
     },
   },
+  computed: {
+    partComputed() {
+      return {
+        'part-active': this.isActive,
+        'part-inactive': !this.isActive,
+      };
+    },
+    spriteComputed() {
+      return {
+        'soul-active': this.isActive,
+        'soul-inactive': !this.isActive,
+        'soul-disable': this.isDisable && !this.isActive,
+      };
+    },
+  },
   setup(props) {
     const store = useStore();
     return {
