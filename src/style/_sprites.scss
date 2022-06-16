@@ -1,8 +1,8 @@
-@mixin avg-sprite($name, $width, $height) {
+@mixin avg-sprite($name, $width, $height, $format) {
   .#{$name} {
     width: #{$width};
     height: #{$height};
-    background: url('@/assets/#{$name}.svg');
+    background: url('@/assets/#{$name}.#{$format}');
     background-repeat: no-repeat;
     background-size: 100% 100%;
   }
@@ -27,28 +27,28 @@
 /* App */
 
 @media only screen and (min-width: 768px) {
-  @include avg-sprite('pacman-logo', 78px, 48px);
+  @include avg-sprite('pacman-logo', 78px, 48px, 'svg');
 }
-@include avg-sprite('coin-modal', 43px, 52px);
-@include avg-sprite('cross-modal', 32px, 32px);
-@include avg-sprite('scroll-arrow', 12px, 24px);
+@include avg-sprite('coin-modal', 43px, 52px, 'png');
+@include avg-sprite('cross-modal', 32px, 32px, 'svg');
+@include avg-sprite('scroll-arrow', 12px, 24px, 'svg');
 @media only screen and (min-width: 320px) and (max-width: 1919px)  {
-  @include avg-sprite('robots', 236px, 206px);
+  @include avg-sprite('robots', 236px, 206px, 'png');
 }
 @media only screen and (min-width: 1920px) {
-  @include avg-sprite('robots', 366px, 320px);
+  @include avg-sprite('robots', 366px, 320px, 'png');
 }
 
 /* CryptoWallet */
 
-@include avg-sprite('coin', 20px, 20px);
-@include avg-sprite('checkmark', 14px, 12px);
+@include avg-sprite('coin', 20px, 20px, 'png');
+@include avg-sprite('checkmark', 14px, 12px, 'svg');
 
 /* PartMarket */
 
-@include avg-sprite('biohand', 101px, 67px);
-@include avg-sprite('microchip', 80px, 80px);
-@include avg-sprite('soul', 55.88px, 54px);
+@include avg-sprite('biohand', 101px, 67px, 'svg');
+@include avg-sprite('microchip', 80px, 80px, 'svg');
+@include avg-sprite('soul', 55.88px, 54px, 'svg');
 
 /* Fabrication */
 
