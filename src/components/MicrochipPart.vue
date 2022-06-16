@@ -11,8 +11,6 @@
 </template>
 
 <script>
-/* eslint-disable prefer-template */
-
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 

@@ -15,7 +15,10 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
-  name: 'soulPart',
+  name: 'partComponent',
+  props: {
+    name: String,
+  },
   data() {
     return {
       isActive: false,
@@ -26,34 +29,18 @@ export default {
       this.isActive = !this.isActive;
     },
   },
-  computed: {
-    partComputed() {
-      return {
-        'part-active': this.isActive,
-        'part-inactive': !this.isActive,
-      };
-    },
-    spriteComputed() {
-      return {
-        'soul-active': this.isActive,
-        'soul-inactive': !this.isActive,
-        'soul-disable': this.isDisable && !this.isActive,
-      };
-    },
-  },
-  setup() {
+  setup(props) {
     const store = useStore();
     return {
-      isDisable: computed(() => store.getters['soul/getSellState']),
+      isDisable: computed(() => store.getters[`${props.name}/getSellState`]),
       isGlobalDeactivate: computed(() => store.getters['fabrication/getGlobaDeactivate']),
-      getPart: () => store.dispatch('getPart', 'soul'),
-      putPart: () => store.dispatch('putPart', 'soul'),
+      getPart: () => store.dispatch('getPart', props.name),
+      putPart: () => store.dispatch('putPart', props.name),
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  @use '@/style/sprites';
-  @use '@/style/partstyle';
+
 </style>

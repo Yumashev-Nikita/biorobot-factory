@@ -1,4 +1,4 @@
-/* eslint-disable prefer-template, prefer-const */
+/* eslint-disable prefer-const */
 
 import WALLET from './wallet';
 
@@ -42,27 +42,27 @@ export default {
         let isFirst = true;
         if (biohandsAmount !== 4) {
           const bhReq = 4 - biohandsAmount;
-          finalText.push(bhReq + ' биорук' + (bhReq === 1 ? 'и' : ''));
+          finalText.push(`${bhReq} биорук${(bhReq === 1 ? 'и' : '')}`);
           isFirst = false;
         }
         if (microchipsAmount !== 4) {
           const mcrReq = 4 - microchipsAmount;
           if (!isFirst) finalText.push(', ');
-          finalText.push(mcrReq + ' микрочип' + (mcrReq === 1 ? 'a' : 'ов'));
+          finalText.push(`${mcrReq}  микрочип${(mcrReq === 1 ? 'a' : 'ов')}`);
         }
         if (soulsAmount !== 1) {
           const soulReq = 1 - soulsAmount;
           if (!isFirst) finalText.push(', ');
-          finalText.push(soulReq + ' души');
+          finalText.push(`${soulReq} души`);
         }
         if (balance < 10) {
           if (!isFirst) finalText.push(', ');
           finalText.push('денег');
         }
       }
-      let index = finalText.lastIndexOf(', ');
+      const index = finalText.lastIndexOf(', ');
       finalText[index] = ' и ';
-      return finalText.join('') + '.';
+      return `${finalText.join('')}.`;
     },
   },
   mutations: {
@@ -120,14 +120,14 @@ export default {
     getPart: {
       root: true,
       handler(namespacedContext, partname) {
-        namespacedContext.commit(partname + '/TAKE', null, { root: true });
+        namespacedContext.commit(`${partname}/TAKE`, null, { root: true });
         namespacedContext.commit('ADD_PART_TO_FAB', partname);
       },
     },
     putPart: {
       root: true,
       handler(namespacedContext, partname) {
-        namespacedContext.commit(partname + '/ADD', null, { root: true });
+        namespacedContext.commit(`${partname}/ADD`, null, { root: true });
         namespacedContext.commit('TAKE_PART_FROM_FAB', partname);
       },
     },

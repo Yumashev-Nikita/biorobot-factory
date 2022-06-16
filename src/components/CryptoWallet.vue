@@ -113,8 +113,6 @@ export default {
     box-sizing: border-box;
     margin-right: 12px;
   }
-  .condition {
-  }
   .disable-select {
     user-select: none;
   }
