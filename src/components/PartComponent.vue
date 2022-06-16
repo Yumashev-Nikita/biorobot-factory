@@ -37,10 +37,17 @@ export default {
       };
     },
     spriteComputed() {
+      console.log(this.name);
       return {
-        'soul-active': this.isActive,
-        'soul-inactive': !this.isActive,
-        'soul-disable': this.isDisable && !this.isActive,
+        'biohand-active': this.isActive && this.name === 'biohand',
+        'biohand-inactive': !this.isActive && this.name === 'biohand',
+        'biohand-disable': this.isDisable && !this.isActive && this.name === 'biohand',
+        'microchip-active': this.isActive && this.name === 'microchip',
+        'microchip-inactive': !this.isActive && this.name === 'microchip',
+        'microchip-disable': this.isDisable && !this.isActive && this.name === 'microchip',
+        'soul-active': this.isActive && this.name === 'soul',
+        'soul-inactive': !this.isActive && this.name === 'soul',
+        'soul-disable': this.isDisable && !this.isActive && this.name === 'soul',
       };
     },
   },
@@ -57,5 +64,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@use '@/style/sprites';
+  .part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+  }
+  .part-active {
+    border: 2px solid #FF7F22;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .part-inactive {
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #333940;
+  }
 </style>

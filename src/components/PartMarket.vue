@@ -81,5 +81,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '@/style/partshopfront';
+  @use '@/components/part_shop_styles/partshopfront';
 </style>

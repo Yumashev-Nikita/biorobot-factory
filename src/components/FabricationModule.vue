@@ -34,19 +34,19 @@
       <div class="fab-block-wrapper">
         <div class="required-parts">
           <div class="required-parts__parts-container">
-            <div class="required-parts__part-wrapper"><BiohandPart/></div>
-            <div class="required-parts__part-wrapper"><BiohandPart/></div>
-            <div class="required-parts__part-wrapper"><BiohandPart/></div>
-            <div class="required-parts__part-wrapper"><BiohandPart/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
           </div>
           <div class="required-parts__parts-container">
-            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
-            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
-            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
-            <div class="required-parts__part-wrapper"><MicrochipPart/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
           </div>
           <div class="required-parts__parts-container">
-            <div class="required-parts__part-wrapper"><SoulPart/></div>
+            <div class="required-parts__part-wrapper"><PartComponent name='soul'/></div>
           </div>
         </div>
       </div>
@@ -73,16 +73,15 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import BiohandPart from './BiohandPart.vue';
-import MicrochipPart from './MicrochipPart.vue';
-import SoulPart from './SoulPart.vue';
+// import BiohandPart from './BiohandPart.vue';
+// import MicrochipPart from './MicrochipPart.vue';
+// import SoulPart from './SoulPart.vue';
+import PartComponent from './PartComponent.vue';
 
 export default {
   name: 'FabricationModule',
   components: {
-    BiohandPart,
-    MicrochipPart,
-    SoulPart,
+    PartComponent,
   },
   computed: {
     fabButtonComputed() {
