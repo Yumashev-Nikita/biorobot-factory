@@ -20,7 +20,7 @@
   .#{$gender}-#{$type}-#{$state} {
     width: 236px;
     height: 320px;
-    background: url('@/assets/fab_robots/#{$gender}-#{$type}-#{$state}.svg');
+    background: url('@/assets/fab_robots/#{$gender}-#{$type}-#{$state}.png');
   }
 }
 
