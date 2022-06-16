@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '@/style/textstyles';
+  @use '@/style/textpresets';
   @use '@/style/sprites';
   @import '@/style/universalmixins';
 
@@ -115,5 +115,24 @@ export default {
   }
   .disable-select {
     user-select: none;
+  }
+  .balance_text {
+    @extend %maintypo;
+    @extend %h3semibold;
+    letter-spacing: 0.01em;
+    color: #A3B8CC;
+  }
+  .make-money-button_text {
+    @extend %maintypo;
+    @extend %text;
+    letter-spacing: 0.015em;
+    color: #FF7F22;
+    text-decoration: 1px underline #ff7e229d;
+    text-underline-position: under;
+  }
+  .condition_text {
+    @extend %maintypo;
+    @extend %text;
+    color: #FFFFFF;
   }
 </style>

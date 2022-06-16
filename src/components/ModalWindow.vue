@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '@/style/textstyles';
+  @use '@/style/textpresets';
   @use '@/style/sprites';
   @use '@/style/universalextenders';
   @import '@/style/universalmixins';
@@ -117,4 +117,28 @@ export default {
       }
     }
   }
+.modal-main-text {
+  @extend %maintypo;
+  @extend %h2semibold;
+  @include mobile {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+  letter-spacing: 0.02em;
+  color: #212529;
+}
+.modal-secondary-text {
+  @extend %maintypo;
+  @extend %infotext;
+  @include mobile {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
+  letter-spacing: 0.02em;
+  color: #4C5865;
+}
 </style>

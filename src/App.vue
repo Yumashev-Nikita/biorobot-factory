@@ -98,7 +98,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  @use '@/style/textstyles';
+  @use '@/style/textpresets';
   @use '@/style/sprites';
   @use '@/style/buttonstyle';
   @use '@/style/universalextenders';
@@ -217,5 +217,40 @@ export default {
     margin-top: 13px;
     margin-left: 6px;
     user-select: none;
+  }
+  .main-title {
+    @extend %maintypo;
+    @extend %h1semibold;
+    @extend %mobile-text-center;
+    letter-spacing: 0.015em;
+    color: #FFFFFF;
+  }
+  .undertitle {
+    @extend %maintypo;
+    @extend %h3semibold;
+    letter-spacing: 0.022em;
+    color: #A3B8CC;
+  }
+  .number {
+    @extend %maintypo;
+    @extend %secondtext;
+    color: #667380;
+  }
+  .section__title-title {
+    @extend %maintypo;
+    @extend %h2semibold;
+    @extend %mobile-text-center;
+    letter-spacing: 0.025em;
+    color: #FFFFFF;
+  }
+  .scroll {
+    @extend %maintypo;
+    @extend %secondtext;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #667380;
+    transform: rotate(-90deg);
   }
 </style>

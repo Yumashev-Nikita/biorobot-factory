@@ -37,7 +37,6 @@ export default {
       };
     },
     spriteComputed() {
-      console.log(this.name);
       return {
         'biohand-active': this.isActive && this.name === 'biohand',
         'biohand-inactive': !this.isActive && this.name === 'biohand',

@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @use '@/style/textstyles';
+  @use '@/style/textpresets';
   @use '@/style/sprites';
   @use '@/style/buttonstyle';
   @import '@/style/universalmixins';
@@ -202,7 +202,7 @@ export default {
   .robot-preview {
     width: 236px;
     height: 320px;
-    @extend %mobile-margin;
+    @extend %mobile-margin !optional;
     @include tablet-horizontal-width {
       position: absolute;
        @media only screen and (min-width: 1020px) and (max-width: 1320px) {
@@ -215,5 +215,21 @@ export default {
         right: 25%;
       }
     }
+  }
+  .changer__title-title {
+    @extend %maintypo;
+    @extend %mediumtext;
+    color: #FFFFFF;
+  }
+  .changer__case-text {
+    @extend %maintypo;
+    @extend %secondtext;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  .functional-text {
+    @extend %maintypo;
+    @extend %secondtext;
+    color: #A3B8CC;
   }
 </style>

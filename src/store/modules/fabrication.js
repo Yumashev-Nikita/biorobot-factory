@@ -11,6 +11,10 @@ export default {
     souls: 0,
     robotModal: false,
     globalDeactivate: false,
+    biohands_nd: 4,
+    microchips_nd: 4,
+    souls_nd: 1,
+    coins_nd: 10,
   },
   getters: {
     getType: (state) => state.type,
@@ -21,7 +25,8 @@ export default {
       let status = '';
       if (state.ready) {
         status = 'ready';
-      } else if (state.biohands === 4 && state.microchips === 4 && state.souls === 1 && getters['wallet/getCoins'] >= 10) {
+      } else if (state.biohands === state.biohands_nd && state.microchips === state.microchips_nd
+          && state.souls === state.souls_nd && getters['wallet/getCoins'] >= state.coins_nd) {
         status = 'available';
       } else {
         status = 'blocked';
@@ -34,26 +39,27 @@ export default {
       const soulsAmount = state.souls;
       const balance = getters['wallet/getCoins'];
       const finalText = ['Для производства биоробота не хватает '];
-      if (biohandsAmount === 4 && microchipsAmount === 4 && soulsAmount === 1 && balance >= 10) {
+      if (biohandsAmount === state.biohands_nd && microchipsAmount === state.microchips_nd
+          && soulsAmount === state.souls_nd && balance >= state.coins_nd) {
         finalText[0] = 'Для производства биоробота всего хватает';
       } else {
         let isFirst = true;
-        if (biohandsAmount !== 4) {
-          const bhReq = 4 - biohandsAmount;
+        if (biohandsAmount !== state.biohands_nd) {
+          const bhReq = state.biohands_nd - biohandsAmount;
           finalText.push(`${bhReq} биорук${(bhReq === 1 ? 'и' : '')}`);
           isFirst = false;
         }
-        if (microchipsAmount !== 4) {
-          const mcrReq = 4 - microchipsAmount;
+        if (microchipsAmount !== state.microchips_nd) {
+          const mcrReq = state.microchips_nd - microchipsAmount;
           if (!isFirst) finalText.push(', ');
           finalText.push(`${mcrReq}  микрочип${(mcrReq === 1 ? 'a' : 'ов')}`);
         }
-        if (soulsAmount !== 1) {
-          const soulReq = 1 - soulsAmount;
+        if (soulsAmount !== state.souls_nd) {
+          const soulReq = state.souls_nd - soulsAmount;
           if (!isFirst) finalText.push(', ');
           finalText.push(`${soulReq} души`);
         }
-        if (balance < 10) {
+        if (balance < state.coins_nd) {
           if (!isFirst) finalText.push(', ');
           finalText.push('денег');
         }
@@ -134,7 +140,7 @@ export default {
       handler(namespacedContext) {
         namespacedContext.commit('SWITCH_READY');
         namespacedContext.commit('TAKE_ALL_PARTS');
-        namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', 10);
+        namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', this.coins_nd);
         namespacedContext.commit('SWITCH_ROBOT_MODAL');
       },
     },
