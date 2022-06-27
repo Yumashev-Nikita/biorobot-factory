@@ -34,19 +34,30 @@
       <div class="fab-block-wrapper">
         <div class="required-parts">
           <div class="required-parts__parts-container">
-            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
-            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
-            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
-            <div class="required-parts__part-wrapper"><PartComponent name='biohand'/></div>
+            <div
+              class="required-parts__part-wrapper"
+              v-for='biohand in biohands'
+              :key='biohand'
+            >
+              <PartComponent name='biohand'/>
+            </div>
           </div>
           <div class="required-parts__parts-container">
-            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
-            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
-            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
-            <div class="required-parts__part-wrapper"><PartComponent name='microchip'/></div>
+            <div
+              class="required-parts__part-wrapper"
+              v-for='microchip in microchips'
+              :key='microchip'>
+              <PartComponent name='microchip'/>
+            </div>
           </div>
           <div class="required-parts__parts-container">
-            <div class="required-parts__part-wrapper"><PartComponent name='soul'/></div>
+            <div
+              class="required-parts__part-wrapper"
+              v-for='soul in souls'
+              :key='soul'
+            >
+              <PartComponent name='soul'/>
+            </div>
           </div>
         </div>
       </div>
@@ -73,9 +84,6 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-// import BiohandPart from './BiohandPart.vue';
-// import MicrochipPart from './MicrochipPart.vue';
-// import SoulPart from './SoulPart.vue';
 import PartComponent from './PartComponent.vue';
 
 export default {
@@ -101,6 +109,9 @@ export default {
       switchType: (type) => store.commit('fabrication/SWITCH_TYPE', type),
       switchGender: (gender) => store.commit('fabrication/SWITCH_GENDER', gender),
       fabricateRobot: () => store.dispatch('fabricateRobot'),
+      biohands: computed(() => store.getters['main/getBiohands']),
+      microchips: computed(() => store.getters['main/getMicrochips']),
+      souls: computed(() => store.getters['main/getSouls']),
     };
   },
 };
@@ -179,6 +190,8 @@ export default {
     margin-top: 30px;
     &__parts-container {
       display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
     &__part-wrapper {
       width: 48px;

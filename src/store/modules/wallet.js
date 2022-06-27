@@ -1,3 +1,5 @@
+import MAIN from './main';
+
 export default {
   namespaced: true,
   state: {
@@ -26,8 +28,9 @@ export default {
   mutations: {
     SWITCH_STACK_MODE: (state) => { state.stackedCoinFarm = !state.stackedCoinFarm; },
     ADD_COINS_FIXED: (state) => {
-      const sum = state.stackedCoinFarm ? 5 : 1;
-      if (state.coins + sum <= 100) {
+      const sum = state.stackedCoinFarm ? state.main.coins_gain_stackmode
+        : state.main.coins_gain_no_stackmode;
+      if (state.coins + sum <= state.main.max_coins) {
         state.coins += sum;
       } else {
         state.coinsModal = !state.coinsModal;
@@ -40,5 +43,6 @@ export default {
   actions: {
   },
   modules: {
+    main: MAIN,
   },
 };

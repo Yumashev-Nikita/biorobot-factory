@@ -1,3 +1,4 @@
+import MAIN from './main';
 import WALLET from './wallet';
 /* eslint-disable prefer-const */
 export default {
@@ -11,22 +12,17 @@ export default {
     souls: 0,
     robotModal: false,
     globalDeactivate: false,
-    biohands_nd: 4,
-    microchips_nd: 4,
-    souls_nd: 1,
-    coins_nd: 10,
   },
   getters: {
     getType: (state) => state.type,
     getGender: (state) => state.gender,
-    getRobotModalState: (state) => state.robotModal,
-    getGlobaDeactivate: (state) => state.globalDeactivate,
     getStatus: (state, getters) => {
       let status = '';
       if (state.ready) {
         status = 'ready';
-      } else if (state.biohands === state.biohands_nd && state.microchips === state.microchips_nd
-          && state.souls === state.souls_nd && getters['wallet/getCoins'] >= state.coins_nd) {
+      } else if (state.biohands === state.main.biohands_necessery
+        && state.microchips === state.main.microchips_necessery
+          && state.souls === state.main.souls_necessery && getters['wallet/getCoins'] >= state.main.coins_necessery) {
         status = 'available';
       } else {
         status = 'blocked';
@@ -39,27 +35,30 @@ export default {
       const soulsAmount = state.souls;
       const balance = getters['wallet/getCoins'];
       let finalText = ['Для производства биоробота не хватает '];
-      if (biohandsAmount === state.biohands_nd && microchipsAmount === state.microchips_nd
-          && soulsAmount === state.souls_nd && balance >= state.coins_nd) {
+      if (biohandsAmount === state.main.biohands_necessery
+        && microchipsAmount === state.main.microchips_necessery
+          && soulsAmount === state.main.souls_necessery && balance >= state.main.coins_necessery) {
         finalText[0] = 'Для производства биоробота всего хватает';
       } else {
         let isFirst = true;
-        if (biohandsAmount !== state.biohands_nd) {
-          const bhReq = state.biohands_nd - biohandsAmount;
+        if (biohandsAmount !== state.main.biohands_necessery) {
+          const bhReq = state.main.biohands_necessery - biohandsAmount;
           finalText.push(`${bhReq} биорук${(bhReq === 1 ? 'и' : '')}`);
           isFirst = false;
         }
-        if (microchipsAmount !== state.microchips_nd) {
-          const mcrReq = state.microchips_nd - microchipsAmount;
+        if (microchipsAmount !== state.main.microchips_necessery) {
+          const mcrReq = state.main.microchips_necessery - microchipsAmount;
           if (!isFirst) finalText.push(', ');
-          finalText.push(`${mcrReq}  микрочип${(mcrReq === 1 ? 'a' : 'ов')}`);
+          finalText.push(`${mcrReq} микрочип${(mcrReq === 1 ? 'a' : 'ов')}`);
+          isFirst = false;
         }
-        if (soulsAmount !== state.souls_nd) {
-          const soulReq = state.souls_nd - soulsAmount;
+        if (soulsAmount !== state.main.souls_necessery) {
+          const soulReq = state.main.souls_necessery - soulsAmount;
           if (!isFirst) finalText.push(', ');
           finalText.push(`${soulReq} души`);
+          isFirst = false;
         }
-        if (balance < state.coins_nd) {
+        if (balance < state.main.coins_necessery) {
           if (!isFirst) finalText.push(', ');
           finalText.push('денег');
         }
@@ -74,8 +73,6 @@ export default {
     SWITCH_GENDER: (state, gender) => { state.gender = gender; },
     SWITCH_READY: (state) => { state.ready = !state.ready; },
     SWITCH_ROBOT_MODAL: (state) => { state.robotModal = !state.robotModal; },
-    DISABLE_GLOBAL_DEACTIVATE: (state) => { console.log('dis'); state.globalDeactivate = false; },
-    ENABLE_GLOBAL_DEACTIVATE: (state) => { console.log('enb'); state.globalDeactivate = true; },
     ADD_PART_TO_FAB: (state, partname) => {
       switch (partname) {
         case 'biohand': {
@@ -140,12 +137,13 @@ export default {
       handler(namespacedContext) {
         namespacedContext.commit('SWITCH_READY');
         namespacedContext.commit('TAKE_ALL_PARTS');
-        namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', this.coins_nd);
+        namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', this.main.coins_necessery);
         namespacedContext.commit('SWITCH_ROBOT_MODAL');
       },
     },
   },
   modules: {
     wallet: WALLET,
+    main: MAIN,
   },
 };

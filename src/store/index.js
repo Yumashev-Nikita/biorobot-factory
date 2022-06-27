@@ -6,6 +6,7 @@ import FABRICATION from './modules/fabrication';
 import BIOHANDS from './modules/biohands';
 import MICROCHIPS from './modules/microchips';
 import SOULS from './modules/souls';
+import MAIN from './modules/main';
 
 export default createStore({
   modules: {
@@ -15,5 +16,6 @@ export default createStore({
     biohand: BIOHANDS,
     microchip: MICROCHIPS,
     soul: SOULS,
+    main: MAIN,
   },
 });
