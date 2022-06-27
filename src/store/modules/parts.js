@@ -1,5 +1,3 @@
-/* eslint-disable prefer-template */
-
 export default {
   namespaced: true,
   state: {
@@ -20,7 +18,7 @@ export default {
       root: true,
       handler(namespacedContext, partname) {
         if (this.getters[`${partname}/getSellCost`] + this.getters['wallet/getCoins'] <= this.getters['main/getMaxCoins']) {
-          namespacedContext.commit(partname + '/TAKE', null, { root: true });
+          namespacedContext.commit(`${partname}/TAKE`, null, { root: true });
           namespacedContext.commit('wallet/ADD_COINS_AMOUNT', this.getters[`${partname}/getSellCost`], { root: true });
         } else {
           namespacedContext.commit('wallet/SWITCH_COINS_MODAL', null, { root: true });

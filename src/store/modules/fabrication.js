@@ -1,6 +1,9 @@
+/* eslint-disable max-len */
+/* eslint-disable prefer-const */
+
 import MAIN from './main';
 import WALLET from './wallet';
-/* eslint-disable prefer-const */
+
 export default {
   namespaced: true,
   state: {
@@ -12,10 +15,16 @@ export default {
     souls: 0,
     robotModal: false,
     globalDeactivate: false,
+    part_comps: {
+      biohands: [],
+      microchips: [],
+      souls: [],
+    },
   },
   getters: {
     getType: (state) => state.type,
     getGender: (state) => state.gender,
+    getRobotModalState: (state) => state.robotModal,
     getStatus: (state, getters) => {
       let status = '';
       if (state.ready) {
@@ -111,6 +120,36 @@ export default {
         }
       }
     },
+    SWITCH_ACTIVE_BY_ID: (state, payload) => {
+      switch (payload.name) {
+        case 'biohand': {
+          state.part_comps.biohands[payload.id].isActive = !state.part_comps.biohands[payload.id].isActive;
+          break;
+        }
+        case 'microchip': {
+          state.part_comps.microchips[payload.id].isActive = !state.part_comps.microchips[payload.id].isActive;
+          break;
+        }
+        case 'soul': {
+          state.part_comps.souls[payload.id].isActive = !state.part_comps.souls[payload.id].isActive;
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    },
+    DEACTIVATE_PARTS: (state) => {
+      for (let i = 0; i < state.part_comps.biohands.length; i += 1) {
+        state.part_comps.biohands[i].isActive = false;
+      }
+      for (let i = 0; i < state.part_comps.microchips.length; i += 1) {
+        state.part_comps.microchips[i].isActive = false;
+      }
+      for (let i = 0; i < state.part_comps.souls.length; i += 1) {
+        state.part_comps.souls[i].isActive = false;
+      }
+    },
     TAKE_ALL_PARTS: (state) => {
       state.biohands = 0;
       state.microchips = 0;
@@ -137,8 +176,22 @@ export default {
       handler(namespacedContext) {
         namespacedContext.commit('SWITCH_READY');
         namespacedContext.commit('TAKE_ALL_PARTS');
-        namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', this.main.coins_necessery);
+        namespacedContext.commit('wallet/TAKE_COINS_AMOUNT', this.state.main.coins_necessery);
         namespacedContext.commit('SWITCH_ROBOT_MODAL');
+      },
+    },
+    resetGame: {
+      root: true,
+      handler(namespacedContext) {
+        namespacedContext.commit('SWITCH_READY');
+        namespacedContext.commit('SWITCH_ROBOT_MODAL');
+        namespacedContext.commit('DEACTIVATE_PARTS');
+      },
+    },
+    switchActiveById: {
+      root: true,
+      handler(namespacedContext, payload) {
+        namespacedContext.commit('SWITCH_ACTIVE_BY_ID', payload);
       },
     },
   },

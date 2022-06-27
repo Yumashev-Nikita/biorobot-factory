@@ -14,7 +14,7 @@
     </div>
     <div class="modal-window" v-if="modalRobotsOpened">
       <div class="modal-window__cross-modal-wrapper cross-modal"
-      @click="switchRobotsModal(); reloadPage()"></div>
+      @click="resetGame"></div>
       <div class="modal-window__content">
         <div class="modal-window__main-text modal-main-text">Биоробот произведён</div>
         <div class="modal-secondary-text">Поздравляем!<br>Вы произвели биоробота</div>
@@ -40,7 +40,7 @@ export default {
       modalCoinsOpened: computed(() => store.getters['wallet/getCoinsModalState']),
       modalRobotsOpened: computed(() => store.getters['fabrication/getRobotModalState']),
       switchCoinsModal: () => store.commit('wallet/SWITCH_COINS_MODAL'),
-      switchRobotsModal: () => store.commit('fabrication/SWITCH_ROBOT_MODAL'),
+      resetGame: () => store.dispatch('resetGame'),
     };
   },
 };

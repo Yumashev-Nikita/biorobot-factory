@@ -1,10 +1,10 @@
 export default {
   namespaced: true,
   state: {
-    biohands_necessery: 8,
-    microchips_necessery: 8,
-    souls_necessery: 2,
-    coins_necessery: 10,
+    biohands_necessery: 2,
+    microchips_necessery: 3,
+    souls_necessery: 1,
+    coins_necessery: 1,
     max_coins: 100,
     coins_gain_no_stackmode: 1,
     coins_gain_stackmode: 5,

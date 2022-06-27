@@ -39,15 +39,16 @@
               v-for='biohand in biohands'
               :key='biohand'
             >
-              <PartComponent name='biohand'/>
+              <PartComponent name='biohand' :id='biohand-1'/>
             </div>
           </div>
           <div class="required-parts__parts-container">
             <div
               class="required-parts__part-wrapper"
               v-for='microchip in microchips'
-              :key='microchip'>
-              <PartComponent name='microchip'/>
+              :key='microchip'
+            >
+              <PartComponent name='microchip' :id='microchip-1'/>
             </div>
           </div>
           <div class="required-parts__parts-container">
@@ -56,7 +57,7 @@
               v-for='soul in souls'
               :key='soul'
             >
-              <PartComponent name='soul'/>
+              <PartComponent name='soul' :id='soul-1'/>
             </div>
           </div>
         </div>

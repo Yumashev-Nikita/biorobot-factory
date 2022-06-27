@@ -1,11 +1,11 @@
 <template>
   <div v-if="isDisable" class="part" :class="partComputed"
-  @click="isActive ? (putPart(), switchActive()) : null"
+  @click="isActive ? (putPart(), switchActive({ name: name, id: id })) : null"
   :style="{ 'cursor': !isActive ? 'default' : null }">
     <div :class="spriteComputed"></div>
   </div>
   <div v-if="!isDisable" class="part" :class="partComputed"
-  @click="isActive ? putPart() : getPart(); switchActive()">
+  @click="isActive ? putPart() : getPart(); switchActive({ name: name, id: id })">
     <div :class="spriteComputed"></div>
   </div>
 </template>
@@ -18,16 +18,7 @@ export default {
   name: 'partComponent',
   props: {
     name: String,
-  },
-  data() {
-    return {
-      isActive: false,
-    };
-  },
-  methods: {
-    switchActive() {
-      this.isActive = !this.isActive;
-    },
+    id: Number,
   },
   computed: {
     partComputed() {
@@ -52,11 +43,49 @@ export default {
   },
   setup(props) {
     const store = useStore();
+    switch (props.name) {
+      case 'biohand': {
+        store.state.fabrication.part_comps.biohands.push({ isActive: false });
+        break;
+      }
+      case 'microchip': {
+        store.state.fabrication.part_comps.microchips.push({ isActive: false });
+        break;
+      }
+      case 'soul': {
+        store.state.fabrication.part_comps.souls.push({ isActive: false });
+        break;
+      }
+      default: {
+        break;
+      }
+    }
     return {
+      switchActive: (payload) => store.dispatch('switchActiveById', payload),
       isDisable: computed(() => store.getters[`${props.name}/getSellState`]),
-      isGlobalDeactivate: computed(() => store.getters['fabrication/getGlobaDeactivate']),
       getPart: () => store.dispatch('getPart', props.name),
       putPart: () => store.dispatch('putPart', props.name),
+      isActive: computed(() => {
+        let stA;
+        switch (props.name) {
+          case 'biohand': {
+            stA = store.state.fabrication.part_comps.biohands;
+            break;
+          }
+          case 'microchip': {
+            stA = store.state.fabrication.part_comps.microchips;
+            break;
+          }
+          case 'soul': {
+            stA = store.state.fabrication.part_comps.souls;
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+        return stA[props.id].isActive;
+      }),
     };
   },
 };
