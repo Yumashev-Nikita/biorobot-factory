@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable prefer-const */
 
 import MAIN from './main';
@@ -123,15 +122,18 @@ export default {
     SWITCH_ACTIVE_BY_ID: (state, payload) => {
       switch (payload.name) {
         case 'biohand': {
-          state.part_comps.biohands[payload.id].isActive = !state.part_comps.biohands[payload.id].isActive;
+          state.part_comps.biohands[payload.id]
+            .isActive = !state.part_comps.biohands[payload.id].isActive;
           break;
         }
         case 'microchip': {
-          state.part_comps.microchips[payload.id].isActive = !state.part_comps.microchips[payload.id].isActive;
+          state.part_comps.microchips[payload.id]
+            .isActive = !state.part_comps.microchips[payload.id].isActive;
           break;
         }
         case 'soul': {
-          state.part_comps.souls[payload.id].isActive = !state.part_comps.souls[payload.id].isActive;
+          state.part_comps.souls[payload.id]
+            .isActive = !state.part_comps.souls[payload.id].isActive;
           break;
         }
         default: {
